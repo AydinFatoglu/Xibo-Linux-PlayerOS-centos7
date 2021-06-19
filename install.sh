@@ -2,6 +2,9 @@
 clear
 sudo yum install figlet toilet -y > /dev/null 2>&1
 figlet -t -k Xibo Player OS
+echo ""
+echo ""
+echo ""
 xibouser="USER INPUT"
 read -p "YOU MUST ENTER A NEW USERNAME FOR THIS SIGNAGE DISPLAY: " xibouser
 id -u $xibouser &>/dev/null || useradd $xibouser
