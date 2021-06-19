@@ -13,7 +13,7 @@ cat << "EOF"
                                                                     |  $$$$$$/                                              
                                                                      \______/                                               
 EOF
-echo ""
+echo "This is the one and only fully automated install bash script for Centos 7 x64 platform!"
 echo ""
 echo ""
 xibouser="USER INPUT"
