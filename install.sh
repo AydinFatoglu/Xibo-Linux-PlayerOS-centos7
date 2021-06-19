@@ -60,7 +60,7 @@ systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target 
 
 
 echo "Xibo Player Server configuration redy!"
-mkdir /home/$xibouser/snap/xibo-player/common
+mkdir -p /home/$xibouser/snap/xibo-player/common
 cd /home/$xibouser/snap/xibo-player/common
 echo -e "<?xml version="1.0" encoding="utf-8"?><cmsAddress>http://signage.thyteknik.com</cmsAddress><key>HztF8r</key><localLibrary>&quot;/home/$xibouser/snap/xibo-player/common/resources&quot;</localLibrary><username/><password/><domain/><displayId></displayId>" > cmsSettings.xml
 echo "ALL DONE!!!! - REBOOTING NOW..."
