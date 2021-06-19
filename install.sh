@@ -8,7 +8,7 @@ passwd $xibouser
 
 host="USER INPUT"
 read -p "YOU MUST ENTER A NEW HOSTNAME: " host
-hostnamectl set-hostname $host.teknik.thynet.thy.com
+hostnamectl set-hostname $host.local
 
 echo "Createing User : [$xibouser]"
 echo "Setting Hostname : [$host]"
