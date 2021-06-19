@@ -56,6 +56,10 @@ mkdir openbox
 cd openbox
 echo "xibo-player" > autostart.sh
 
+#xibo player server conf
+#cd /etc/gdm/
+#sed -i 's/original/new/g' file.txt
+
 echo "ALL DONE!!!! - REBOOTING NOW..."
 sleep 5
 sudo reboot
