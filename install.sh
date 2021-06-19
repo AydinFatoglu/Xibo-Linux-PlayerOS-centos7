@@ -59,8 +59,8 @@ echo "Never Sleep configured"
 systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target > /dev/null 2>&1
 
 
-#xibo player server conf
-mkhomedir_helper $xibouser
+echo "Xibo Player Server configuration redy!"
+mkdir /home/$xibouser/snap/xibo-player/common
 cd /home/$xibouser/snap/xibo-player/common
 echo -e "<?xml version="1.0" encoding="utf-8"?><cmsAddress>http://signage.thyteknik.com</cmsAddress><key>HztF8r</key><localLibrary>&quot;/home/$xibouser/snap/xibo-player/common/resources&quot;</localLibrary><username/><password/><domain/><displayId></displayId>" > cmsSettings.xml
 echo "ALL DONE!!!! - REBOOTING NOW..."
