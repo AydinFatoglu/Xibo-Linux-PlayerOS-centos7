@@ -16,11 +16,14 @@ echo "Createing User : $xibouser"
 echo "Setting Hostname : $host"
 
 echo "Downloading and Installing GUI [X Window System / xorg / GDM / Openbox]"
-
+echo "Downloading and Installing GUI [X Window System]"
 yum groupinstall "X Window System" -y > /dev/null 2>&1
+echo "Downloading and Installing GUI [xorg]"
 yum install xorg* -y > /dev/null 2>&1
+echo "Downloading and Installing GUI [GDM]"
 yum install epel-release -y > /dev/null 2>&1
 yum install gdm -y > /dev/null 2>&1
+echo "Downloading and Installing GUI [Openbox]"
 yum install openbox -y > /dev/null 2>&1
 
 echo "Downloading and Installing Snap For Centos 7"
@@ -39,10 +42,10 @@ echo "GUI is now enabled"
 
 systemctl set-default graphical.target > /dev/null 2>&1
 
-echo "Auto Login is configured for user ttsignage"
+echo "Auto Login is configured for user $xibouser"
 
 cd /etc/gdm/
-sed -i "4i AutomaticLogin=ttsignage" custom.conf
+sed -i "4i AutomaticLogin=$xibouser" custom.conf
 sed -i "5i AutomaticLoginEnable=True" custom.conf
 
 echo "Xibo Player Auto Start at logon configured"
