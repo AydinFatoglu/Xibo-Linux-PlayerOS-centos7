@@ -54,6 +54,10 @@ mkdir openbox
 cd openbox
 echo "xibo-player" > autostart.sh
 
+echo "Never Sleep configured"
+systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target > /dev/null 2>&1
+
+
 #xibo player server conf
 #cd /etc/gdm/
 #sed -i 's/original/new/g' file.txt
