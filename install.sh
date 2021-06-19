@@ -37,11 +37,11 @@ sed -i "5i AutomaticLoginEnable=True" custom.conf
 
 echo "Xibo Player Auto Start at logon configured"
 
-mkdir /home/ttsignage/.config/ > /dev/null 2>&1
-cd /home/ttsignage/.config/ > /dev/null 2>&1
-mkdir openbox > /dev/null 2>&1
-cd openbox > /dev/null 2>&1
-echo "xibo-player" > autostart.sh > /dev/null 2>&1
+mkdir /home/ttsignage/.config/
+cd /home/ttsignage/.config/
+mkdir openbox
+cd openbox
+echo "xibo-player" > autostart.sh
 
 host="USER INPUT"
 read -p "YOU MUST ENTER A NEW HOSTNAME: " host
