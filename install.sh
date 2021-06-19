@@ -60,10 +60,8 @@ systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target 
 
 
 #xibo player server conf
-#xibo-player.options > /dev/null 2>&1
-#cd /home/$xibouser/snap/xibo-player/common
-#sed -i 's/original/new/g' file.txt
-
+cd /home/$xibouser/snap/xibo-player/common
+echo -e "<?xml version="1.0" encoding="utf-8"?><cmsAddress>http://signage</cmsAddress><key>ttkey</key><localLibrary>&quot;/home/$xibouser/snap/xibo-player/common/resources&quot;</localLibrary><username/><password/><domain/><displayId></displayId>" > cmsSettings.xml
 echo "ALL DONE!!!! - REBOOTING NOW..."
 sleep 5
 sudo reboot
