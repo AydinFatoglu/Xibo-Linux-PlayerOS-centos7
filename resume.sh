@@ -6,7 +6,8 @@
 # We created this file before rebooting.
 if [ ! -f /var/run/resume-after-reboot ]; then
   echo "running script for the first time.."
-  
+  sleep 10
+  killall options
   # run your scripts here
 
   # Preparation for reboot
@@ -20,10 +21,12 @@ if [ ! -f /var/run/resume-after-reboot ]; then
   sudo touch /var/run/resume-after-reboot
   
   echo "rebooting.."
-  # reboot here
+  sudo reboot
   
 else 
   echo "resuming script after reboot.."
+  
+  
   
   # Remove the line that we added in zshrc
   sed -i '/bash/d' ~/.zshrc 
