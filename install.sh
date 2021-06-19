@@ -23,6 +23,7 @@ yum install epel-release -y > /dev/null 2>&1
 yum install gdm -y > /dev/null 2>&1
 echo "Downloading and Installing GUI [Openbox]"
 yum install openbox -y > /dev/null 2>&1
+yum install nano -y > /dev/null 2>&1
 
 echo "Downloading and Installing Snap For Centos 7"
 
@@ -59,6 +60,7 @@ systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target 
 
 
 #xibo player server conf
+xibo-player.options > /dev/null 2>&1
 #cd /etc/gdm/
 #sed -i 's/original/new/g' file.txt
 
