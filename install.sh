@@ -4,9 +4,7 @@ xibouser="USER INPUT"
 read -p "YOU MUST ENTER A NEW USERNAME FOR SIGNAGE DISPLAY: " xibouser
 id -u $xibouser &>/dev/null || useradd $xibouser > /dev/null 2>&1
 
-userpass="USER INPUT"
-read -s "YOU MUST ENTER A PASSWORD FOR THIS USE: " userpass
-echo $userpass | passwd $xibouser --stdin > /dev/null 2>&1
+passwd $xibouser --stdin > /dev/null 2>&1
 
 host="USER INPUT"
 read -p "YOU MUST ENTER A NEW HOSTNAME: " host
