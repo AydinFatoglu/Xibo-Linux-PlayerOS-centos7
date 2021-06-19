@@ -1,11 +1,21 @@
 #!/bin/bash
 
-echo "Createing User : ttsignage"
+xibouser="USER INPUT"
+read -p "YOU MUST ENTER A NEW USERNAME FOR SIGNAGE DISPLAY: " xibouser
+id -u $xibouser &>/dev/null || useradd $xibouser > /dev/null 2>&1
 
-id -u ttsignage &>/dev/null || useradd ttsignage > /dev/null 2>&1
-echo Teknik.209 | passwd ttsignage --stdin > /dev/null 2>&1
+userpass="USER INPUT"
+read -p "YOU MUST ENTER A PASSWORD FOR THIS USE: " userpass
+echo $userpass | passwd $xibouser --stdin > /dev/null 2>&1
 
-echo "Downloading and Installing GUI"
+host="USER INPUT"
+read -p "YOU MUST ENTER A NEW HOSTNAME: " host
+hostnamectl set-hostname $host.teknik.thynet.thy.com
+
+echo "Createing User : $xibouser"
+echo "Setting Hostname : $host"
+
+echo "Downloading and Installing GUI [X Window System / xorg / GDM / Openbox]"
 
 yum groupinstall "X Window System" -y > /dev/null 2>&1
 yum install xorg* -y > /dev/null 2>&1
@@ -37,15 +47,12 @@ sed -i "5i AutomaticLoginEnable=True" custom.conf
 
 echo "Xibo Player Auto Start at logon configured"
 
-mkdir /home/ttsignage/.config/
-cd /home/ttsignage/.config/
+mkdir /home/$xibouser/.config/
+cd /home/$xibouser/.config/
 mkdir openbox
 cd openbox
 echo "xibo-player" > autostart.sh
 
-host="USER INPUT"
-read -p "YOU MUST ENTER A NEW HOSTNAME: " host
-hostnamectl set-hostname $host.teknik.thynet.thy.com
 echo "ALL DONE!!!! - REBOOTING NOW..."
 sleep 5
 sudo reboot
