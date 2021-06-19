@@ -1,6 +1,8 @@
-# xibo-linux-centos7-client
+# Xibo-Linux-PlayerOS-centos7
 
-This is the one and only fully automated preparation bash script for Centos 7 x64 platform.
-It focuses on low ram cpu usage so only needed components will be installed to run Xibo Linux Palayer only!
-It will auto login to pre-definned user by you.
-It will auto start Xibo Linux Palayer   
+This is the one and only fully automated install bash script for Centos 7 x64 platform.
+It focuses on low ram and cpu usage so only needed components will be installed to run Xibo Linux Player smoothly!
+
+-It will install latest stable version of Xibo Linux Player from Snap.
+-It will auto logon to pre-definned user by you.
+-It will auto start Xibo Linux Player on logon.   
