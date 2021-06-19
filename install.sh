@@ -1,8 +1,8 @@
 #!/bin/bash
-
+clear
 xibouser="USER INPUT"
 read -p "YOU MUST ENTER A NEW USERNAME FOR THIS SIGNAGE DISPLAY: " xibouser
-id -u $xibouser &>/dev/null || useradd $xibouser
+id -u $xibouser &>/dev/null || useradd -m $xibouser
 echo "YOU MUST ENTER A NEW PASSWORD (twice) FOR USER [$xibouser]"
 passwd $xibouser
 
@@ -60,6 +60,7 @@ systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target 
 
 
 #xibo player server conf
+mkhomedir_helper $xibouser
 cd /home/$xibouser/snap/xibo-player/common
 echo -e "<?xml version="1.0" encoding="utf-8"?><cmsAddress>http://signage.thyteknik.com</cmsAddress><key>HztF8r</key><localLibrary>&quot;/home/$xibouser/snap/xibo-player/common/resources&quot;</localLibrary><username/><password/><domain/><displayId></displayId>" > cmsSettings.xml
 echo "ALL DONE!!!! - REBOOTING NOW..."
