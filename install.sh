@@ -11,7 +11,7 @@ read -p "YOU MUST ENTER A NEW HOSTNAME: " host
 hostnamectl set-hostname $host.teknik.thynet.thy.com
 
 echo "Createing User : [$xibouser]"
-echo "Setting Hostname : [$xibouser]"
+echo "Setting Hostname : [$host]"
 
 echo "Downloading and Installing GUI [X Window System / xorg / GDM / Openbox]"
 echo "Downloading and Installing GUI [X Window System]"
