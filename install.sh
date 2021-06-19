@@ -60,8 +60,8 @@ systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target 
 
 
 #xibo player server conf
-xibo-player.options > /dev/null 2>&1
-#cd /etc/gdm/
+#xibo-player.options > /dev/null 2>&1
+#cd /home/$xibouser/snap/xibo-player/common
 #sed -i 's/original/new/g' file.txt
 
 echo "ALL DONE!!!! - REBOOTING NOW..."
