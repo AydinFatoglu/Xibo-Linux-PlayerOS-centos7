@@ -1,17 +1,17 @@
 #!/bin/bash
 
 xibouser="USER INPUT"
-read -p "YOU MUST ENTER A NEW USERNAME FOR SIGNAGE DISPLAY: " xibouser
+read -p "YOU MUST ENTER A NEW USERNAME FOR THIS SIGNAGE DISPLAY: " xibouser
 id -u $xibouser &>/dev/null || useradd $xibouser > /dev/null 2>&1
-
+echo "YOU MUST ENTER A NEW PASSWORD (twice) FOR USER [$xibouser]"
 passwd $xibouser
 
 host="USER INPUT"
 read -p "YOU MUST ENTER A NEW HOSTNAME: " host
 hostnamectl set-hostname $host.teknik.thynet.thy.com
 
-echo "Createing User : $xibouser"
-echo "Setting Hostname : $host"
+echo "Createing User : [$xibouser]"
+echo "Setting Hostname : [$xibouser]"
 
 echo "Downloading and Installing GUI [X Window System / xorg / GDM / Openbox]"
 echo "Downloading and Installing GUI [X Window System]"
