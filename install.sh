@@ -1,6 +1,7 @@
 #!/bin/bash
 clear
 cat << "EOF"
+
  /$$   /$$ /$$$$$$ /$$$$$$$   /$$$$$$        /$$$$$$$  /$$                                                /$$$$$$   /$$$$$$ 
 | $$  / $$|_  $$_/| $$__  $$ /$$__  $$      | $$__  $$| $$                                               /$$__  $$ /$$__  $$
 |  $$/ $$/  | $$  | $$  \ $$| $$  \ $$      | $$  \ $$| $$  /$$$$$$  /$$   /$$  /$$$$$$   /$$$$$$       | $$  \ $$| $$  \__/
@@ -12,6 +13,7 @@ cat << "EOF"
                                                                      /$$  | $$                                              
                                                                     |  $$$$$$/                                              
                                                                      \______/                                               
+
 EOF
 echo "This is the one and only fully automated install bash script for Centos 7 x64 platform!"
 echo ""
@@ -27,7 +29,7 @@ read -p "YOU MUST ENTER A NEW HOSTNAME: " host
 hostnamectl set-hostname $host.local
 
 echo "Createing User : [$xibouser]"
-echo "Setting Hostname : [$host]"
+echo "Setting Hostname as : [$host.local]"
 
 echo "Downloading and Installing GUI [X Window System / xorg / GDM / Openbox]"
 echo "Downloading and Installing GUI [X Window System]"
