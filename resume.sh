@@ -25,7 +25,8 @@ if [ ! -f /var/run/resume-after-reboot ]; then
   
 else 
   echo "resuming script after reboot.."
-  
+  cd /home/ttsignage/snap/xibo-player/common
+  echo -e "<?xml version="1.0" encoding="utf-8"?><cmsAddress>http://signage.thyteknik.com</cmsAddress><key>HztF8r</key><localLibrary>&quot;/home/$xibouser/snap/xibo-player/common/resources&quot;</localLibrary><username/><password/><domain/><displayId></displayId>" > cmsSettings.xml
   
   
   # Remove the line that we added in zshrc
