@@ -2,7 +2,7 @@
 clear
 xibouser="USER INPUT"
 read -p "YOU MUST ENTER A NEW USERNAME FOR THIS SIGNAGE DISPLAY: " xibouser
-id -u $xibouser &>/dev/null || useradd -m $xibouser
+id -u $xibouser &>/dev/null || useradd $xibouser
 echo "YOU MUST ENTER A NEW PASSWORD (twice) FOR USER [$xibouser]"
 passwd $xibouser
 
