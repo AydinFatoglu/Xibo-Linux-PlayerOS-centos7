@@ -74,20 +74,6 @@ cd openbox
 echo "xibo-player" > autostart.sh
 echo "Never Sleep configured"
 systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target > /dev/null 2>&1
-
-# TO DO PART
-echo "Xibo Player Server configuration redy!"
-mkdir -p /home/$xibouser/snap/xibo-player/common
-cd /home/$xibouser/snap/xibo-player/common
-cat <<EOT >> cmsSettings.xml
-<?xml version="1.0" encoding="utf-8"?>
-<cmsAddress>http://signage.thyteknik.com</cmsAddress>
-<key>HztF8r</key>
-<localLibrary>&quot;/home/$xibouser/snap/xibo-player/common/resources&quot;</localLibrary>
-<username/><password/>
-<domain><domain/>
-<displayId></displayId>
-EOT
 echo "ALL DONE!!!! - REBOOTING NOW..."
 sleep 5
 sudo reboot
