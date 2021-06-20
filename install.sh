@@ -41,6 +41,7 @@ yum install epel-release -y > /dev/null 2>&1
 yum install gdm -y > /dev/null 2>&1
 echo "Downloading and Installing GUI [Openbox]"
 yum install openbox -y > /dev/null 2>&1
+yum install git -y > /dev/null 2>&1
 yum install nano -y > /dev/null 2>&1
 
 echo "Downloading and Installing Snap For Centos 7"
@@ -57,24 +58,12 @@ sudo snap install xibo-player > /dev/null 2>&1
 echo "Downloading and Installing Terminator"
 yum install -y terminator > /dev/null 2>&1
 echo "Downloading and Installing TightVNC Server"
-yum -y install tigervnc-server tigervnc-server-minimal  > /dev/null 2>&1
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+yum install -y tigervnc tigervnc-server > /dev/null 2>&1
+git clone https://github.com/sebestyenistvan/runvncserver
+cp ~/runvncserver/startvnc ~
+chmod +x ~/startvnc
 
 echo "GUI is now enabled"
-
 systemctl set-default graphical.target > /dev/null 2>&1
 
 echo "Auto Login is configured for user $xibouser"
@@ -89,7 +78,10 @@ mkdir /home/$xibouser/.config/
 cd /home/$xibouser/.config/
 mkdir openbox
 cd openbox
-echo "xibo-player" > autostart.sh
+cat <<EOT >> greetings.txt
+./startvnc start
+xibo-player
+EOT
 echo "Never Sleep configured"
 systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target > /dev/null 2>&1
 echo "ALL DONE!!!! - REBOOTING NOW..."
