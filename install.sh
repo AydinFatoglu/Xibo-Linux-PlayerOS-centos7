@@ -72,7 +72,6 @@ cd /home/$xibouser/.config/
 mkdir openbox
 cd openbox
 echo "xibo-player" > autostart.sh
-
 echo "Never Sleep configured"
 systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target > /dev/null 2>&1
 
