@@ -56,6 +56,22 @@ sleep 5
 sudo snap install xibo-player > /dev/null 2>&1
 echo "Downloading and Installing Terminator"
 yum install -y terminator > /dev/null 2>&1
+echo "Downloading and Installing TightVNC Server"
+yum -y install tigervnc-server tigervnc-server-minimal  > /dev/null 2>&1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 echo "GUI is now enabled"
 
