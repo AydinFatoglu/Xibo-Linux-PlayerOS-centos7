@@ -41,8 +41,11 @@ yum install epel-release -y > /dev/null 2>&1
 yum install gdm -y > /dev/null 2>&1
 echo "Downloading and Installing GUI [Openbox]"
 yum install openbox -y > /dev/null 2>&1
+
+echo "Downloading and Installing Tools"
 yum install git -y > /dev/null 2>&1
 yum install nano -y > /dev/null 2>&1
+yum install wget -y > /dev/null 2>&1
 
 echo "Downloading and Installing Snap For Centos 7"
 
