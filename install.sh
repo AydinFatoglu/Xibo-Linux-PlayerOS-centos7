@@ -76,18 +76,18 @@ echo "Never Sleep configured"
 systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target > /dev/null 2>&1
 
 # TO DO PART
-#echo "Xibo Player Server configuration redy!"
+echo "Xibo Player Server configuration redy!"
 mkdir -p /home/$xibouser/snap/xibo-player/common
 cd /home/$xibouser/snap/xibo-player/common
-
-echo "<?xml version="1.0" encoding="utf-8"?>" > cmsSettings.xml
-echo "<cmsAddress>http://signage.thyteknik.com</cmsAddress>" > cmsSettings.xml
-echo "<key>HztF8r</key>" > cmsSettings.xml
-echo "<localLibrary>&quot;/home/$xibouser/snap/xibo-player/common/resources&quot;</localLibrary>" > cmsSettings.xml
-echo "<username/><password/>" > cmsSettings.xml
-echo "<domain><domain/>" > cmsSettings.xml
-echo "<displayId></displayId>" > cmsSettings.xml
-
+cat <<EOT >> cmsSettings.xml
+<?xml version="1.0" encoding="utf-8"?>
+<cmsAddress>http://signage.thyteknik.com</cmsAddress>
+<key>HztF8r</key>
+<localLibrary>&quot;/home/$xibouser/snap/xibo-player/common/resources&quot;</localLibrary>
+<username/><password/>
+<domain><domain/>
+<displayId></displayId>
+EOT
 echo "ALL DONE!!!! - REBOOTING NOW..."
 sleep 5
 sudo reboot
