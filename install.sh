@@ -13,9 +13,8 @@ cat << "EOF"
                                                                      /$$  | $$                                              
                                                                     |  $$$$$$/                                              
                                                                      \______/                                               
-
+The one and only fully automated installer for Centos 7 x64 platform!
 EOF
-echo "The one and only fully automated installer for Centos 7 x64 platform!"
 echo ""
 echo ""
 xibouser="USER INPUT"
@@ -58,14 +57,31 @@ echo "Downloading and Installing Xibo Player From Snap"
 sudo snap install xibo-player > /dev/null 2>&1
 sleep 5
 sudo snap install xibo-player > /dev/null 2>&1
+
 echo "Downloading and Installing Terminator"
 yum install -y terminator > /dev/null 2>&1
+
 echo "Downloading and Installing TightVNC Server"
-yum install -y tigervnc tigervnc-server > /dev/null 2>&1
-git clone https://github.com/sebestyenistvan/runvncserver
+yum install -y tigervnc-server > /dev/null 2>&1
+echo "Configureing TightVNC Server"
+
+cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver_$xibouser@:2.service > /dev/null 2>&1
+sed -i 's/<USER>/$xibouser/g' /etc/systemd/system/vncserver_$xibouser@:2.service > /dev/null 2>&1
+systemctl stop firewalld
+systemctl disable firewalld
+systemctl daemon-reload
+git clone https://github.com/sebestyenistvan/runvncserver > /dev/null 2>&1
 cp ~/runvncserver/startvnc ~
 chmod +x ~/startvnc
 
+echo "Configureing AutoStart"
+
+mkdir -p /home/$xibouser/.config/openbox
+cp ~/startvnc /home/$xibouser/.config/openbox/
+cat <<EOT >> /home/$xibouser/.config/openbox/autostart.sh
+./startvnc start
+xibo-player
+EOT
 echo "GUI is now enabled"
 systemctl set-default graphical.target > /dev/null 2>&1
 
@@ -75,16 +91,7 @@ cd /etc/gdm/
 sed -i "4i AutomaticLogin=$xibouser" custom.conf
 sed -i "5i AutomaticLoginEnable=True" custom.conf
 
-echo "Xibo Player Auto Start at logon configured"
 
-mkdir /home/$xibouser/.config/
-cd /home/$xibouser/.config/
-mkdir openbox
-cd openbox
-cat <<EOT >> greetings.txt
-./startvnc start
-xibo-player
-EOT
 echo "Never Sleep configured"
 systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target > /dev/null 2>&1
 echo "ALL DONE!!!! - REBOOTING NOW..."
