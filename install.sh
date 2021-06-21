@@ -92,7 +92,7 @@ echo "Configureing AutoStart"
 mkdir -p /home/$xibouser/.config/openbox
 cp ~/startvnc /home/$xibouser/.config/openbox/
 cat <<EOT >> /home/$xibouser/.config/openbox/autostart.sh
-/home/$xibouser/.config/openbox/startvnc start
+#/home/$xibouser/.config/openbox/startvnc start
 xibo-player
 EOT
 echo "GUI is now enabled"
