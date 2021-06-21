@@ -17,6 +17,14 @@ The one and only fully automated installer for Centos 7 x64 platform!
 EOF
 echo ""
 echo ""
+
+#id -u youruser &>/dev/null || useradd youruser
+#echo yourpass | passwd youruser --stdin
+
+#hostnamectl set-hostname yourhost.local
+
+
+
 xibouser="USER INPUT"
 read -p "YOU MUST ENTER A NEW USERNAME FOR THIS SIGNAGE DISPLAY: " xibouser
 id -u $xibouser &>/dev/null || useradd $xibouser
@@ -72,7 +80,7 @@ systemctl disable firewalld
 systemctl daemon-reload
 
 echo "YOU MUST ENTER A NEW PASSWORD FOR VNC ACCESS"
-vncpasswd
+runuser -l $xibouser -c 'vncpasswd'
 #(echo mypass; echo mypass) | vncpasswd
 
 git clone https://github.com/sebestyenistvan/runvncserver > /dev/null 2>&1
@@ -84,7 +92,7 @@ echo "Configureing AutoStart"
 mkdir -p /home/$xibouser/.config/openbox
 cp ~/startvnc /home/$xibouser/.config/openbox/
 cat <<EOT >> /home/$xibouser/.config/openbox/autostart.sh
-./startvnc start
+/home/$xibouser/.config/openbox/startvnc start
 xibo-player
 EOT
 echo "GUI is now enabled"
