@@ -70,6 +70,11 @@ sed -i 's/<USER>/$xibouser/g' /etc/systemd/system/vncserver_$xibouser@:2.service
 systemctl stop firewalld
 systemctl disable firewalld
 systemctl daemon-reload
+
+echo "YOU MUST ENTER A NEW PASSWORD FOR VNC ACCESS"
+vncpasswd
+#(echo mypass; echo mypass) | vncpasswd
+
 git clone https://github.com/sebestyenistvan/runvncserver > /dev/null 2>&1
 cp ~/runvncserver/startvnc ~
 chmod +x ~/startvnc
