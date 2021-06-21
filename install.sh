@@ -13,7 +13,7 @@ cat << "EOF"
                                                                      /$$  | $$                                              
                                                                     |  $$$$$$/                                              
                                                                      \______/                                               
-The one and only fully automated installer for Centos 7 x64 platform!
+Fully automated installer for Centos 7 (2009) x64 platform By AYDINFATOGLU
 EOF
 echo ""
 echo ""
@@ -76,7 +76,7 @@ echo "Configureing TightVNC Server"
 cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver_$xibouser@:2.service > /dev/null 2>&1
 sed -i 's/<USER>/$xibouser/g' /etc/systemd/system/vncserver_$xibouser@:2.service > /dev/null 2>&1
 systemctl stop firewalld
-systemctl disable firewalld
+systemctl disable firewalld > /dev/null 2>&1
 systemctl daemon-reload
 
 echo "YOU MUST ENTER A NEW PASSWORD FOR VNC ACCESS"
