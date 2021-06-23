@@ -23,8 +23,6 @@ echo ""
 
 #hostnamectl set-hostname yourhost.local
 
-
-
 xibouser="USER INPUT"
 read -p "YOU MUST ENTER A NEW USERNAME FOR THIS SIGNAGE DISPLAY: " xibouser
 id -u $xibouser &>/dev/null || useradd $xibouser
@@ -87,14 +85,39 @@ git clone https://github.com/sebestyenistvan/runvncserver > /dev/null 2>&1
 cp ~/runvncserver/startvnc ~
 chmod +x ~/startvnc
 
-echo "Configureing AutoStart"
+echo "Configureing AutoStart XiboPlayer"
 
 mkdir -p /home/$xibouser/.config/openbox
 cp ~/startvnc /home/$xibouser/.config/openbox/
 cat <<EOT >> /home/$xibouser/.config/openbox/autostart.sh
-#/home/$xibouser/.config/openbox/startvnc start
 xibo-player
 EOT
+
+cat <<EOT >> /root/vncalwayson.sh
+#!/bin/bash
+./root/startvnc start 
+EOT
+
+chmod +x /root/vncalwayson.sh
+
+echo "Configureing VNC Service"
+
+cat <<EOT >> /lib/systemd/system/vncalwayson.service
+[Unit]
+Description=VNC AS SERVICE
+
+[Service]
+ExecStart=/root/vncalwayson.sh
+
+[Install]
+WantedBy=multi-user.target
+EOT
+sudo systemctl daemon-reload
+sudo systemctl enable vncalwayson.service 
+sudo systemctl start vncalwayson.service 
+
+
+
 echo "GUI is now enabled"
 systemctl set-default graphical.target > /dev/null 2>&1
 
@@ -110,3 +133,11 @@ systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target 
 echo "ALL DONE!!!! - REBOOTING NOW..."
 sleep 5
 sudo reboot
+
+
+
+
+
+
+
+
