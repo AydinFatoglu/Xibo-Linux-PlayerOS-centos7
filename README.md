@@ -6,3 +6,8 @@ It focuses on low ram and cpu usage so only needed components will be installed 
 -It will install latest stable version of Xibo Linux Player from Snap.
 -It will auto logon to pre-definned user by you.
 -It will auto start Xibo Linux Player on logon.   
+
+
+# Usage
+
+yum install wget -y && wget https://raw.githubusercontent.com/AydinFatoglu/Xibo-Linux-PlayerOS-centos7/main/install.sh && chmod +x install.sh && ./ install.sh
