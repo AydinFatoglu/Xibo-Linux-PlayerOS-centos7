@@ -90,34 +90,18 @@ echo "Configureing AutoStart XiboPlayer"
 mkdir -p /home/$xibouser/.config/openbox
 cp ~/startvnc /home/$xibouser/.config/openbox/
 cat <<EOT >> /home/$xibouser/.config/openbox/autostart.sh
-xibo-player
+./home/$xibouser/.config/openbox/startvnc start
+./home/$xibouser/playercontrol.sh
 EOT
 
-cat <<EOT >> /root/vncalwayson.sh
-#!/bin/bash
-./root/startvnc start 
+cat <<EOT >> /home/$xibouser/playercontrol.sh
+#!/usr/bin/bash
+while `true`
+do
+  xibo-player
+done
 EOT
-
-chmod +x /root/vncalwayson.sh
-
-echo "Configureing VNC Service"
-
-cat <<EOT >> /lib/systemd/system/vncalwayson.service
-[Unit]
-Description=VNC AS SERVICE
-
-[Service]
-ExecStart=/root/vncalwayson.sh
-
-[Install]
-WantedBy=multi-user.target
-EOT
-sudo systemctl daemon-reload
-sudo systemctl enable vncalwayson.service 
-sudo systemctl start vncalwayson.service 
-
-
-
+chmod +x /home/$xibouser/playercontrol.sh
 echo "GUI is now enabled"
 systemctl set-default graphical.target > /dev/null 2>&1
 
