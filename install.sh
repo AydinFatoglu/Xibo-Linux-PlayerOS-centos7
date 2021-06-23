@@ -111,14 +111,14 @@ echo "Configureing AutoStart XiboPlayer"
 mkdir -p /home/$xibouser/.config/openbox
 cp ~/startvnc /home/$xibouser/.config/openbox/
 
-cat <<EOT >> /home/$xibouser/.config/openbox/playercontrol.sh
+cat <<EOT >> /home/$xibouser/.config/playercontrol.sh
 #!/usr/bin/bash
 while `true`
 do
   xibo-player
 done
 EOT
-chmod +x /home/$xibouser/playercontrol.sh
+chmod +x /home/$xibouser/.config/playercontrol.sh
 
 cat <<EOT >> /home/$xibouser/.config/openbox/autostart.sh
 .config/openbox/startvnc start &
