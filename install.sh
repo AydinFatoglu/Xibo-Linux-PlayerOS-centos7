@@ -36,6 +36,26 @@ hostnamectl set-hostname $host.local
 echo "Createing User : [$xibouser]"
 echo "Setting Hostname as : [$host.local]"
 
+echo "STARTING NOW!!!"
+sleep 2
+clear
+
+cat << "EOF"
+
+ /$$   /$$ /$$$$$$ /$$$$$$$   /$$$$$$        /$$$$$$$  /$$                                                /$$$$$$   /$$$$$$ 
+| $$  / $$|_  $$_/| $$__  $$ /$$__  $$      | $$__  $$| $$                                               /$$__  $$ /$$__  $$
+|  $$/ $$/  | $$  | $$  \ $$| $$  \ $$      | $$  \ $$| $$  /$$$$$$  /$$   /$$  /$$$$$$   /$$$$$$       | $$  \ $$| $$  \__/
+ \  $$$$/   | $$  | $$$$$$$ | $$  | $$      | $$$$$$$/| $$ |____  $$| $$  | $$ /$$__  $$ /$$__  $$      | $$  | $$|  $$$$$$ 
+  >$$  $$   | $$  | $$__  $$| $$  | $$      | $$____/ | $$  /$$$$$$$| $$  | $$| $$$$$$$$| $$  \__/      | $$  | $$ \____  $$
+ /$$/\  $$  | $$  | $$  \ $$| $$  | $$      | $$      | $$ /$$__  $$| $$  | $$| $$_____/| $$            | $$  | $$ /$$  \ $$
+| $$  \ $$ /$$$$$$| $$$$$$$/|  $$$$$$/      | $$      | $$|  $$$$$$$|  $$$$$$$|  $$$$$$$| $$            |  $$$$$$/|  $$$$$$/
+|__/  |__/|______/|_______/  \______/       |__/      |__/ \_______/ \____  $$ \_______/|__/             \______/  \______/ 
+                                                                     /$$  | $$                                              
+                                                                    |  $$$$$$/                                              
+                                                                     \______/                                               
+Fully automated installer for Centos 7 (2009) x64 platform By AYDINFATOGLU
+EOF
+
 echo "Downloading and Installing GUI [X Window System / xorg / GDM / Openbox]"
 echo "Downloading and Installing GUI [X Window System]"
 yum groupinstall "X Window System" -y > /dev/null 2>&1
