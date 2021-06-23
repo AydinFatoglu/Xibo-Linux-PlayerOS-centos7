@@ -110,14 +110,8 @@ echo "Configureing AutoStart XiboPlayer"
 
 mkdir -p /home/$xibouser/.config/openbox
 cp ~/startvnc /home/$xibouser/.config/openbox/
-cat <<EOT >> /home/$xibouser/.config/openbox/autostart.sh
-./home/$xibouser/.config/openbox/startvnc start &
-./home/$xibouser/playercontrol.sh &
-EOT
 
-chmod +x /home/$xibouser/.config/openbox/autostart.sh
-
-cat <<EOT >> /home/$xibouser/playercontrol.sh
+cat <<EOT >> /home/$xibouser/.config/openbox/playercontrol.sh
 #!/usr/bin/bash
 while `true`
 do
@@ -125,6 +119,14 @@ do
 done
 EOT
 chmod +x /home/$xibouser/playercontrol.sh
+
+cat <<EOT >> /home/$xibouser/.config/openbox/autostart.sh
+.config/openbox/startvnc start &
+.config/openbox/playercontrol.sh &
+EOT
+
+chmod +x /home/$xibouser/.config/openbox/autostart.sh
+
 echo "GUI is now enabled"
 systemctl set-default graphical.target > /dev/null 2>&1
 
