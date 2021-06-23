@@ -113,7 +113,7 @@ cp ~/startvnc /home/$xibouser/.config/openbox/
 
 cat <<EOT >> /home/$xibouser/.config/openbox/playercontrol.sh
 #!/usr/bin/bash
-while `true`
+while "true"
 do
   xibo-player
 done
