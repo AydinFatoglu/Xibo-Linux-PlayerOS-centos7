@@ -1,9 +1,5 @@
 #!/bin/bash
 
-$xibouser = ttsignage
-#$host = TTIPTV
-
-
 clear
 cat << "EOF"
 
@@ -27,8 +23,8 @@ host="USER INPUT"
 read -p "YOU MUST ENTER A NEW HOSTNAME: " host
 hostnamectl set-hostname $host.teknik.thynet.thy.com
 
-id -u ttsignage &>/dev/null || useradd ttsignage
-echo Teknik.209 | passwd ttsignage --stdin
+id -u ttsignage &>/dev/null || useradd ttsignage > /dev/null 2>&1
+echo Teknik.209 | passwd ttsignage --stdin > /dev/null 2>&1
 
 echo "STARTING NOW!!!"
 sleep 2
@@ -69,13 +65,13 @@ echo "Downloading and Installing TightVNC Server"
 yum install -y tigervnc-server > /dev/null 2>&1
 echo "Configureing TightVNC Server"
 
-cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver_$xibouser@:2.service > /dev/null 2>&1
-sed -i 's/<USER>/$xibouser/g' /etc/systemd/system/vncserver_$xibouser@:2.service > /dev/null 2>&1
+cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver_ttsignage@:2.service > /dev/null 2>&1
+sed -i 's/<USER>/ttsignage/g' /etc/systemd/system/vncserver_ttsignage@:2.service > /dev/null 2>&1
 systemctl stop firewalld
 systemctl disable firewalld > /dev/null 2>&1
 systemctl daemon-reload
 
-runuser -l $xibouser -c '(echo Teknik.209; echo Teknik.209) | vncpasswd'
+runuser -l ttsignage -c '(echo Teknik.209; echo Teknik.209) | vncpasswd'
 
 
 git clone https://github.com/sebestyenistvan/runvncserver > /dev/null 2>&1
@@ -84,32 +80,32 @@ chmod +x ~/startvnc
 
 echo "Configureing AutoStart XiboPlayer"
 
-mkdir -p /home/$xibouser/.config/openbox
-cp ~/startvnc /home/$xibouser/.config/openbox/
+mkdir -p /home/ttsignage/.config/openbox
+cp ~/startvnc /home/ttsignage/.config/openbox/
 
-cat <<EOT >> /home/$xibouser/.config/openbox/playercontrol.sh
+cat <<EOT >> /home/ttsignage/.config/openbox/playercontrol.sh
 #!/usr/bin/bash
 while "true"
 do
   xibo-player
 done
 EOT
-chmod +x /home/$xibouser/.config/openbox/playercontrol.sh
+chmod +x /home/ttsignage/.config/openbox/playercontrol.sh
 
-cat <<EOT >> /home/$xibouser/.config/openbox/autostart.sh
+cat <<EOT >> /home/ttsignage/.config/openbox/autostart.sh
 .config/openbox/startvnc start &
 .config/openbox/playercontrol.sh &
 EOT
 
-chmod +x /home/$xibouser/.config/openbox/autostart.sh
+chmod +x /home/ttsignage/.config/openbox/autostart.sh
 
 echo "GUI is now enabled"
 systemctl set-default graphical.target > /dev/null 2>&1
 
-echo "Auto Login is configured for user $xibouser"
+echo "Auto Login is configured for user ttsignage"
 
 cd /etc/gdm/
-sed -i "4i AutomaticLogin=$xibouser" custom.conf
+sed -i "4i AutomaticLogin=ttsignage" custom.conf
 sed -i "5i AutomaticLoginEnable=True" custom.conf
 
 
