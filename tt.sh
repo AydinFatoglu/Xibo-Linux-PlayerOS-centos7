@@ -27,7 +27,7 @@ host="USER INPUT"
 read -p "YOU MUST ENTER A NEW HOSTNAME: " host
 hostnamectl set-hostname $host.teknik.thynet.thy.com
 
-$xibouser = ttsignage
+
 
 id -u $xibouser &>/dev/null || useradd $xibouser
 echo Teknik.209 | passwd $xibouser --stdin
