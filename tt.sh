@@ -27,30 +27,11 @@ host="USER INPUT"
 read -p "YOU MUST ENTER A NEW HOSTNAME: " host
 hostnamectl set-hostname $host.teknik.thynet.thy.com
 
-
-
 id -u $xibouser &>/dev/null || useradd $xibouser
 echo Teknik.209 | passwd $xibouser --stdin
 
 echo "STARTING NOW!!!"
 sleep 2
-clear
-
-cat << "EOF"
-
- /$$   /$$ /$$$$$$ /$$$$$$$   /$$$$$$        /$$$$$$$  /$$                                                /$$$$$$   /$$$$$$ 
-| $$  / $$|_  $$_/| $$__  $$ /$$__  $$      | $$__  $$| $$                                               /$$__  $$ /$$__  $$
-|  $$/ $$/  | $$  | $$  \ $$| $$  \ $$      | $$  \ $$| $$  /$$$$$$  /$$   /$$  /$$$$$$   /$$$$$$       | $$  \ $$| $$  \__/
- \  $$$$/   | $$  | $$$$$$$ | $$  | $$      | $$$$$$$/| $$ |____  $$| $$  | $$ /$$__  $$ /$$__  $$      | $$  | $$|  $$$$$$ 
-  >$$  $$   | $$  | $$__  $$| $$  | $$      | $$____/ | $$  /$$$$$$$| $$  | $$| $$$$$$$$| $$  \__/      | $$  | $$ \____  $$
- /$$/\  $$  | $$  | $$  \ $$| $$  | $$      | $$      | $$ /$$__  $$| $$  | $$| $$_____/| $$            | $$  | $$ /$$  \ $$
-| $$  \ $$ /$$$$$$| $$$$$$$/|  $$$$$$/      | $$      | $$|  $$$$$$$|  $$$$$$$|  $$$$$$$| $$            |  $$$$$$/|  $$$$$$/
-|__/  |__/|______/|_______/  \______/       |__/      |__/ \_______/ \____  $$ \_______/|__/             \______/  \______/ 
-                                                                     /$$  | $$                                              
-                                                                    |  $$$$$$/                                              
-                                                                     \______/                                               
-Fully automated installer for Centos 7 (2009) x64 platform By AYDINFATOGLU
-EOF
 echo ""
 echo ""
 echo "Downloading and Installing GUI [X Window System / xorg / GDM / Openbox]"
