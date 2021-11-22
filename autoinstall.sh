@@ -91,8 +91,7 @@ systemctl stop firewalld
 systemctl disable firewalld > /dev/null 2>&1
 systemctl daemon-reload
 
-echo "YOU MUST ENTER A NEW PASSWORD FOR VNC ACCESS"
-runuser -l $xibouser -c 'vncpasswd'
+runuser -l ttsignage -c 'vncpasswd'
 (echo Tfjf83qt2g99; echo Tfjf83qt2g99) | vncpasswd
 systemctl enable vncserver@:2.service
 systemctl start vncserver@:2.service
