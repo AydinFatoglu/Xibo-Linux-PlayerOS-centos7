@@ -101,6 +101,8 @@ systemctl daemon-reload
 echo "YOU MUST ENTER A NEW PASSWORD FOR VNC ACCESS"
 runuser -l $xibouser -c 'vncpasswd'
 #(echo mypass; echo mypass) | vncpasswd
+systemctl enable vncserver@:2.service
+systemctl start vncserver@:2.service
 
 git clone https://github.com/sebestyenistvan/runvncserver > /dev/null 2>&1
 cp ~/runvncserver/startvnc ~
