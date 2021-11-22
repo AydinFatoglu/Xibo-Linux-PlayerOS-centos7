@@ -128,7 +128,7 @@ systemctl set-default graphical.target > /dev/null 2>&1
 echo "Auto Login is configured for user ttsignage"
 
 cd /etc/gdm/
-sed -i "4i AutomaticLogin=$xibouser" custom.conf
+sed -i "4i AutomaticLogin=ttsignage" custom.conf
 sed -i "5i AutomaticLoginEnable=True" custom.conf
 
 
