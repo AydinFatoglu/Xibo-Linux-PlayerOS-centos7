@@ -48,6 +48,8 @@ cat << "EOF"
                                                                      \______/                                               
 Fully automated installer for Centos 7 (2009) x64 platform By AYDINFATOGLU
 EOF
+
+
 echo ""
 echo ""
 echo "Downloading and Installing GUI [X Window System / xorg / GDM / Openbox]"
@@ -85,13 +87,19 @@ echo "Downloading and Installing TightVNC Server"
 yum install -y tigervnc-server > /dev/null 2>&1
 echo "Configureing TightVNC Server"
 
-cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver_$xibouser@:2.service > /dev/null 2>&1
-sed -i 's/<USER>/$xibouser/g' /etc/systemd/system/vncserver_$xibouser@:2.service > /dev/null 2>&1
+cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver_ttsignage@:2.service > /dev/null 2>&1
+sed -i 's/<USER>/ttsignage/g' /etc/systemd/system/vncserver_ttsignage@:2.service > /dev/null 2>&1
 systemctl stop firewalld
 systemctl disable firewalld > /dev/null 2>&1
 systemctl daemon-reload
 
-runuser -l ttsignage -c 'vncpasswd'
+#runuser -l ttsignage -c 'vncpasswd'
+
+echo Tfjf83qt2g99 | vncpasswd -f > /home/ttsignage/.vnc/passwd
+chown -R ttsignage:ttsignage /home/ttsignage/.vnc
+chmod 0600 /home/ttsignage/.vnc/passwd
+
+
 echo Tfjf83qt2g99; echo Tfjf83qt2g99 | vncpasswd
 systemctl enable vncserver@:2.service
 systemctl start vncserver@:2.service
@@ -121,7 +129,7 @@ EOT
 
 chmod +x /home/ttsignage/.config/openbox/autostart.sh
 
-echo "GUI is now enabled"
+echo "GUI enabled"
 systemctl set-default graphical.target > /dev/null 2>&1
 
 echo "Auto Login is configured for user ttsignage"
