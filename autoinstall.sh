@@ -152,21 +152,12 @@ cd /etc/gdm/
 sed -i "4i AutomaticLogin=ttsignage" custom.conf
 sed -i "5i AutomaticLoginEnable=True" custom.conf
 
-
 echo "Never Sleep configured"
 systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target > /dev/null 2>&1
 
-echo "Schedule nightly reboot  configured.
-cat <<EOT >> /etc/crontab
-0 1 * * * /usr/sbin/reboot
-EOT
+echo "Schedule Reboot configured"
+echo '00 1 * * * sudo shutdown -r' >>/etc/crontab
+
 echo "ALL DONE!!!! - REBOOTING NOW..."
 sleep 5
 sudo reboot
-
-
-
-
-
-
-
