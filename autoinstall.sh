@@ -18,8 +18,11 @@ EOF
 echo ""
 echo ""
 
-id -u ttsignage &>/dev/null || useradd ttsignage
-echo Teknik.209 | passwd ttsignage --stdin
+$xibouser="ttsignage"
+$loginpass="Teknik.209"
+
+id -u $xibouser &>/dev/null || useradd $xibouser
+echo $loginpass | passwd $xibouser --stdin
 
 
 
@@ -77,7 +80,7 @@ sudo ln -s /var/lib/snapd/snap /snap > /dev/null 2>&1
 echo "Downloading and Installing Xibo Player From Snap"
 
 sudo snap install xibo-player > /dev/null 2>&1
-sleep 5
+sleep 3
 sudo snap install xibo-player > /dev/null 2>&1
 
 echo "Downloading and Installing Terminator"
@@ -87,15 +90,19 @@ echo "Downloading and Installing TightVNC Server"
 yum install -y tigervnc-server > /dev/null 2>&1
 echo "Configureing TightVNC Server"
 
-cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver_ttsignage@:2.service > /dev/null 2>&1
-sed -i 's/<USER>/ttsignage/g' /etc/systemd/system/vncserver_ttsignage@:2.service > /dev/null 2>&1
+cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver_$xibouser@:2.service > /dev/null 2>&1
+sed -i 's/<USER>/$xibouser/g' /etc/systemd/system/vncserver_$xibouser@:2.service > /dev/null 2>&1
 systemctl stop firewalld
 systemctl disable firewalld > /dev/null 2>&1
 systemctl daemon-reload
 
-echo Tfjf83qt2g99 | vncpasswd -f > /home/ttsignage/.vnc/passwd
-chown -R ttsignage:ttsignage /home/ttsignage/.vnc
-chmod 0600 /home/ttsignage/.vnc/passwd
+myuser="ttsignage"
+mypasswd="Teknik.209"
+
+mkdir /home/$myuser/.vnc
+echo $mypasswd | vncpasswd -f > /home/$myuser/.vnc/passwd
+chown -R $myuser:$myuser /home/$myuser/.vnc
+chmod 0600 /home/$myuser/.vnc/passwd
 
 systemctl enable vncserver@:2.service
 systemctl start vncserver@:2.service
@@ -106,24 +113,24 @@ chmod +x ~/startvnc
 
 echo "Configureing AutoStart XiboPlayer"
 
-mkdir -p /home/ttsignage/.config/openbox
-cp ~/startvnc /home/ttsignage/.config/openbox/
+mkdir -p /home/$xibouser/.config/openbox
+cp ~/startvnc /home/$xibouser/.config/openbox/
 
-cat <<EOT >> /home/ttsignage/.config/openbox/playercontrol.sh
+cat <<EOT >> /home/$xibouser/.config/openbox/playercontrol.sh
 #!/usr/bin/bash
 while "true"
 do
   xibo-player
 done
 EOT
-chmod +x /home/ttsignage/.config/openbox/playercontrol.sh
+chmod +x /home/$xibouser/.config/openbox/playercontrol.sh
 
-cat <<EOT >> /home/ttsignage/.config/openbox/autostart.sh
+cat <<EOT >> /home/$xibouser/.config/openbox/autostart.sh
 .config/openbox/startvnc start &
 .config/openbox/playercontrol.sh &
 EOT
 
-chmod +x /home/ttsignage/.config/openbox/autostart.sh
+chmod +x /home/$xibouser/.config/openbox/autostart.sh
 
 echo "GUI enabled"
 systemctl set-default graphical.target > /dev/null 2>&1
