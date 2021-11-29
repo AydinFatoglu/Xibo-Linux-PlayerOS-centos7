@@ -93,14 +93,10 @@ systemctl stop firewalld
 systemctl disable firewalld > /dev/null 2>&1
 systemctl daemon-reload
 
-#runuser -l ttsignage -c 'vncpasswd'
-
 echo Tfjf83qt2g99 | vncpasswd -f > /home/ttsignage/.vnc/passwd
 chown -R ttsignage:ttsignage /home/ttsignage/.vnc
 chmod 0600 /home/ttsignage/.vnc/passwd
 
-
-echo Tfjf83qt2g99; echo Tfjf83qt2g99 | vncpasswd
 systemctl enable vncserver@:2.service
 systemctl start vncserver@:2.service
 
