@@ -18,8 +18,8 @@ EOF
 echo ""
 echo ""
 
-$xibouser="ttsignage"
-$loginpass="Teknik.209"
+xibouser="ttsignage"
+loginpass="Teknik.209"
 
 id -u $xibouser &>/dev/null || useradd $xibouser
 echo $loginpass | passwd $xibouser --stdin
