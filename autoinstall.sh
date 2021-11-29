@@ -5,6 +5,7 @@
 xibouser=ttsignage
 loginpass=Teknik.209
 vncpass=Teknik.209
+systimezone=Europe/Istanbul
 ###############
 
 clear
@@ -140,6 +141,9 @@ chmod +x /home/$xibouser/.config/openbox/autostart.sh
 
 echo "GUI enabled"
 systemctl set-default graphical.target > /dev/null 2>&1
+echo "Setting Time Zone"
+sudo timedatectl set-timezone $systimezone
+
 
 echo "Auto Login is configured for user ttsignage"
 
