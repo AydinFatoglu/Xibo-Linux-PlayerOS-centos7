@@ -1,4 +1,12 @@
 #!/bin/bash
+
+#Configuration
+###############
+xibouser=ttsignage
+loginpass=Teknik.209
+vncpass=Teknik.209
+###############
+
 clear
 cat << "EOF"
 
@@ -18,11 +26,10 @@ EOF
 echo ""
 echo ""
 
-xibouser=ttsignage
-loginpass=Teknik.209
 
-id -u $xibouser &>/dev/null || useradd $xibouser
-echo $loginpass | passwd $xibouser --stdin
+
+id -u $xibouser &>/dev/null || useradd $xibouser > /dev/null 2>&1
+echo $loginpass | passwd $xibouser --stdin > /dev/null 2>&1
 
 
 
@@ -96,13 +103,12 @@ systemctl stop firewalld
 systemctl disable firewalld > /dev/null 2>&1
 systemctl daemon-reload
 
-myuser="ttsignage"
-mypasswd="Teknik.209"
 
-mkdir /home/$myuser/.vnc
-echo $mypasswd | vncpasswd -f > /home/$myuser/.vnc/passwd
-chown -R $myuser:$myuser /home/$myuser/.vnc
-chmod 0600 /home/$myuser/.vnc/passwd
+
+mkdir /home/$xibouser/.vnc
+echo $vncpass | vncpasswd -f > /home/$xibouser/.vnc/passwd
+chown -R $xibouser:$xibouser /home/$xibouser/.vnc
+chmod 0600 /home/$xibouser/.vnc/passwd
 
 systemctl enable vncserver@:2.service
 systemctl start vncserver@:2.service
