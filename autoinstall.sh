@@ -110,8 +110,8 @@ echo $vncpass | vncpasswd -f > /home/$xibouser/.vnc/passwd
 chown -R $xibouser:$xibouser /home/$xibouser/.vnc
 chmod 0600 /home/$xibouser/.vnc/passwd
 
-systemctl enable vncserver@:2.service
-systemctl start vncserver@:2.service
+systemctl enable vncserver@:2.service > /dev/null 2>&1
+systemctl start vncserver@:2.service > /dev/null 2>&1
 
 git clone https://github.com/sebestyenistvan/runvncserver > /dev/null 2>&1
 cp ~/runvncserver/startvnc ~
