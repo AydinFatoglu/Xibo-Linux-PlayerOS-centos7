@@ -5,7 +5,8 @@
 xibouser=ttsignage
 loginpass=Teknik.209
 vncpass=Teknik.209
-systimezone=Europe/Istanbul
+systimezone=Europe/Istanbul 
+# use cmd to get the list: timedatectl list-timezones
 ###############
 
 clear
