@@ -21,7 +21,7 @@ cat << "EOF"
                                                                      /$$  | $$                                              
                                                                     |  $$$$$$/                                              
                                                                      \______/                                               
-Fully automated installer for Centos 7 (2009) x64 platform By AYDINFATOGLU
+Fully automated installer for Centos 7 (v2009) x64 platform By AYDINFATOGLU
 EOF
 echo ""
 echo ""
@@ -56,7 +56,7 @@ cat << "EOF"
                                                                      /$$  | $$                                              
                                                                     |  $$$$$$/                                              
                                                                      \______/                                               
-Fully automated installer for Centos 7 (2009) x64 platform By AYDINFATOGLU
+Fully automated installer for Centos 7 (v2009) x64 platform By AYDINFATOGLU
 EOF
 
 
@@ -73,7 +73,7 @@ yum install gdm -y > /dev/null 2>&1
 echo "Downloading and Installing GUI [Openbox]"
 yum install openbox -y > /dev/null 2>&1
 
-echo "Downloading and Installing Tools"
+echo "Downloading and Installing Prerequsits"
 yum install git -y > /dev/null 2>&1
 yum install nano -y > /dev/null 2>&1
 yum install wget -y > /dev/null 2>&1
