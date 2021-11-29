@@ -5,7 +5,8 @@ It focuses on low ram and cpu usage so only needed components will be installed 
 
 -It will install latest stable version of Xibo Linux Player from Snap.
 -It will auto logon to pre-definned user by you.
--It will auto start Xibo Linux Player on logon.   
+-It will auto start Xibo Linux Player on logon.
+- It will auto start Xibo Linux Player if Crashes.
 
 
 # Usage
