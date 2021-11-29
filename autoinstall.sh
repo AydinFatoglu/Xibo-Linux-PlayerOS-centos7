@@ -155,6 +155,11 @@ sed -i "5i AutomaticLoginEnable=True" custom.conf
 
 echo "Never Sleep configured"
 systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target > /dev/null 2>&1
+
+echo "Schedule nightly reboot  configured.
+cat <<EOT >> /etc/crontab
+0 1 * * * /usr/sbin/reboot
+EOT
 echo "ALL DONE!!!! - REBOOTING NOW..."
 sleep 5
 sudo reboot
