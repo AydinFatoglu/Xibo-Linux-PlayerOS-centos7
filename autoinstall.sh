@@ -163,14 +163,12 @@ chmod +x /etc/systemd/system/xiboplayer.service
 echo "Configureing  Conky"
 
 rm -f /etc/conky/conky.conf
-
-
-
-
+wget -P /etc/conky/ https://raw.githubusercontent.com/AydinFatoglu/Xibo-Linux-PlayerOS-centos7/main/conky.conf > /dev/null 2>&1
 chmod +x /etc/conky/conky.conf
 
 
-systemctl enable xiboplayer.service
+
+systemctl enable xiboplayer.service > /dev/null 2>&1
 
 echo "GUI enabled"
 systemctl set-default graphical.target > /dev/null 2>&1
