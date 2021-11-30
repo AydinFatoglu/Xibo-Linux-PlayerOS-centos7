@@ -128,21 +128,21 @@ do
 done
 EOT
 
-cat <<EOT >> /home/$xibouser/.config/openbox/cnokyshow.sh
+cat <<EOT >> /home/$xibouser/.config/openbox/conkyshow.sh
 #!/usr/bin/bash
 
-cnoky &
+conky &
 EOT
 
 cat <<EOT >> /home/$xibouser/.config/openbox/autostart.sh
 .config/openbox/startvnc start &
 .config/openbox/playercontrol.sh &
-.config/openbox/cnokyshow.sh &
+.config/openbox/conkyshow.sh &
 EOT
 
 chmod +x /home/$xibouser/.config/openbox/autostart.sh
 chmod +x /home/$xibouser/.config/openbox/playercontrol.sh
-chmod +x /home/$xibouser/.config/openbox/cnokyshow.sh
+chmod +x /home/$xibouser/.config/openbox/conkyshow.sh
 
 echo "Configureing  XiboPlayer as Service"
 
