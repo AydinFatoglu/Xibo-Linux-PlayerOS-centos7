@@ -135,6 +135,24 @@ EOT
 
 chmod +x /home/$xibouser/.config/openbox/autostart.sh
 
+chmod +x /home/$xibouser/.config/openbox/playercontrol.sh
+
+cat <<EOT >> /etc/systemd/system/xiboplayer.service
+[Unit]
+Description=Xibo Service
+
+[Service]
+ExecStart=/bin/xibo-player
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+EOT
+
+chmod +x /etc/systemd/system/xiboplayer.service
+
+systemctl enable xiboplayer.service
+
 echo "GUI enabled"
 systemctl set-default graphical.target > /dev/null 2>&1
 echo "Setting Time Zone"
