@@ -105,9 +105,9 @@ echo $vncpass | vncpasswd -f > /home/$xibouser/.vnc/passwd
 chown -R $xibouser:$xibouser /home/$xibouser/.vnc
 chmod 0600 /home/$xibouser/.vnc/passwd
 
-git clone https://github.com/sebestyenistvan/runvncserver > /dev/null 2>&1
-cp ~/runvncserver/startvnc ~
-chmod +x ~/startvnc
+#git clone https://github.com/sebestyenistvan/runvncserver > /dev/null 2>&1
+#cp ~/runvncserver/startvnc ~
+#chmod +x ~/startvnc
 
 echo "Configureing Firewall"
 
@@ -115,7 +115,7 @@ systemctl stop firewalld
 systemctl disable firewalld > /dev/null 2>&1
 systemctl daemon-reload
 
-echo "Configureing  Start on Login [VNC / CONKY]"
+echo "Configureing Start on Login"
 
 mkdir -p /home/$xibouser/.config/openbox
 cp ~/startvnc /home/$xibouser/.config/openbox/
@@ -127,7 +127,6 @@ conky &
 EOT
 
 cat <<EOT >> /home/$xibouser/.config/openbox/autostart.sh
-.config/openbox/startvnc start &
 .config/openbox/conkyshow.sh &
 EOT
 
@@ -153,7 +152,35 @@ EOT
 chmod +x /etc/systemd/system/xibo.service
 systemctl enable xibo.service > /dev/null 2>&1
 
+echo "Configureing  VNC as Service"
 
+cat <<EOT >> /etc/systemd/system/vnc.service
+[Unit]
+Description=Remote desktop service (VNC) for :0 display
+
+# Require start of
+Requires=display-manager.service
+
+# Wait for
+After=network-online.target
+After=display-manager.service
+
+[Service]
+Type=forking
+
+# Start command
+ExecStart=/usr/bin/sh -c 'sleep 3 && /usr/bin/x0vncserver -display :0 -rfbport 5900 -passwordfile /home/$xibouser/.vnc/passwd &'
+
+# Restart service after session log out
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+EOT
+
+chmod +x /etc/systemd/system/vnc.service
+systemctl enable vnc.service > /dev/null 2>&1
 
 
 echo "Configureing  Conky"
