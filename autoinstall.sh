@@ -137,7 +137,7 @@ chmod +x /home/$xibouser/.config/openbox/autostart.sh
 
 chmod +x /home/$xibouser/.config/openbox/playercontrol.sh
 
-echo "Configureing  XiboPlayer as Service
+echo "Configureing  XiboPlayer as Service"
 
 cat <<EOT >> /etc/systemd/system/xiboplayer.service
 [Unit]
