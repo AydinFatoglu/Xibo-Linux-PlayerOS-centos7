@@ -148,12 +148,14 @@ echo "Configureing  XiboPlayer as Service"
 
 cat <<EOT >> /etc/systemd/system/xiboplayer.service
 [Unit]
-Description=Xibo Service
-
+Description=Service Xibo-client
 [Service]
+Type=simple
+RestartSec=30
+Environment=DISPLAY=:0
+User=$xibouser
 ExecStart=/snap/bin/xibo-player
 Restart=always
-
 [Install]
 WantedBy=default.target
 EOT
