@@ -105,10 +105,6 @@ echo $vncpass | vncpasswd -f > /home/$xibouser/.vnc/passwd
 chown -R $xibouser:$xibouser /home/$xibouser/.vnc
 chmod 0600 /home/$xibouser/.vnc/passwd
 
-#git clone https://github.com/sebestyenistvan/runvncserver > /dev/null 2>&1
-#cp ~/runvncserver/startvnc ~
-#chmod +x ~/startvnc
-
 echo "Configureing Firewall"
 
 systemctl stop firewalld
