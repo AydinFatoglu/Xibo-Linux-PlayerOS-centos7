@@ -7,6 +7,7 @@ It focuses on low ram and cpu usage so only needed components will be installed 
 - It will install latest stable version of Conky to display system info on desktop.
 - It will auto logon to pre-definned user by you.
 - It will auto start Xibo Linux Player on logon.
+- It will auto start Vnc remote accsess when system boots.
 - It will auto start Xibo Linux Player if Crashes.
 - It will auto restart the operating system every night at 1 AM.
 
@@ -17,7 +18,9 @@ yum install wget -y -y && wget https://raw.githubusercontent.com/AydinFatoglu/Xi
 
 # Configuration
 
-Here are some predefined configuration variables to make your life easy 
+Here are some predefined configuration variables to make your life easy.
+
+Check the configuration section of the script for mare details.
 
 - xibouser - Auto logon system user
 - loginpass - Auto logon system password for user
