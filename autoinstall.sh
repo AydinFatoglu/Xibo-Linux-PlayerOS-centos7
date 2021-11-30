@@ -155,7 +155,7 @@ ExecStart=/snap/bin/xibo-player
 Restart=always
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target
 EOT
 
 chmod +x /etc/systemd/system/xiboplayer.service
