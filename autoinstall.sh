@@ -79,6 +79,8 @@ echo "Downloading and Installing Prerequsits"
 yum install git -y > /dev/null 2>&1
 yum install nano -y > /dev/null 2>&1
 yum install wget -y > /dev/null 2>&1
+yum install net-tools -y > /dev/null 2>&1
+yum install conky -y > /dev/null 2>&1
 yum install -y terminator > /dev/null 2>&1
 
 echo "Downloading and Installing Snap For Centos 7"
@@ -126,16 +128,21 @@ do
 done
 EOT
 
-chmod +x /home/$xibouser/.config/openbox/playercontrol.sh
+cat <<EOT >> /home/$xibouser/.config/openbox/cnokyshow.sh
+#!/usr/bin/bash
+
+cnoky &
+EOT
 
 cat <<EOT >> /home/$xibouser/.config/openbox/autostart.sh
 .config/openbox/startvnc start &
 .config/openbox/playercontrol.sh &
+.config/openbox/cnokyshow.sh &
 EOT
 
 chmod +x /home/$xibouser/.config/openbox/autostart.sh
-
 chmod +x /home/$xibouser/.config/openbox/playercontrol.sh
+chmod +x /home/$xibouser/.config/openbox/cnokyshow.sh
 
 echo "Configureing  XiboPlayer as Service"
 
