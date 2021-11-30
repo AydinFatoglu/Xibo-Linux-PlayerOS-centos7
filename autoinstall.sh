@@ -79,6 +79,7 @@ echo "Downloading and Installing Prerequsits"
 yum install git -y > /dev/null 2>&1
 yum install nano -y > /dev/null 2>&1
 yum install wget -y > /dev/null 2>&1
+yum install -y terminator > /dev/null 2>&1
 
 echo "Downloading and Installing Snap For Centos 7"
 
@@ -91,9 +92,6 @@ echo "Downloading and Installing Xibo Player From Snap"
 sudo snap install xibo-player > /dev/null 2>&1
 sleep 3
 sudo snap install xibo-player > /dev/null 2>&1
-
-echo "Downloading and Installing Terminator"
-yum install -y terminator > /dev/null 2>&1
 
 echo "Downloading and Installing TightVNC Server"
 yum install -y tigervnc-server > /dev/null 2>&1
