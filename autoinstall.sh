@@ -151,7 +151,7 @@ cat <<EOT >> /etc/systemd/system/xiboplayer.service
 Description=Xibo Service
 
 [Service]
-ExecStart=xibo-player
+ExecStart=/snap/bin/xibo-player
 Restart=always
 
 [Install]
