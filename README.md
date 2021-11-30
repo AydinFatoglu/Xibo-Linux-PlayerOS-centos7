@@ -19,9 +19,9 @@ yum install wget -y -y && wget https://raw.githubusercontent.com/AydinFatoglu/Xi
 
 Here are some predefined configuration variables to make your life easy 
 
-- xibouser
-- loginpass
-- vncpass
-- systimezone 
-use cmd to get the list: timedatectl list-timezones
+- xibouser - Auto logon system user
+- loginpass - Auto logon system password for user
+- vncpass - Vnc Password for remote connection to client
+- systimezone - Operating System time zone configuration based on your region (use cmd to get the list: timedatectl list-timezones)
+
 
