@@ -160,6 +160,59 @@ EOT
 
 chmod +x /etc/systemd/system/xiboplayer.service
 
+echo "Configureing  Conky"
+
+rm -f /etc/conky/conky.conf
+
+cat <<EOT >> /etc/conky/conky.conf
+alignment top_left
+background no
+border_width 1
+cpu_avg_samples 2
+default_color white
+default_outline_color white
+default_shade_color white
+draw_borders no
+draw_graph_borders yes
+draw_outline no
+draw_shades no
+use_xft yes
+xftfont DejaVu Sans Mono:size=12
+gap_x 5
+gap_y 60
+minimum_size 5 5
+net_avg_samples 2
+no_buffers yes
+out_to_console no
+out_to_stderr no
+extra_newline no
+own_window yes
+own_window_class Conky
+own_window_type desktop
+stippled_borders 0
+update_interval 1.0
+uppercase no
+use_spacer none
+show_graph_scale no
+show_graph_range no
+
+TEXT
+${scroll 16 $nodename }
+$hr
+${color grey}Uptime:$color $uptime
+${color grey}RAM:$color $mem - $memperc% ${membar 4}
+${color grey}CPU:$color $cpu% ${cpubar 4}
+${color grey}Processes:$color $processes  ${color grey}Running:$color $running_processes
+$hr
+${color grey}Networking:
+Up:$color ${upspeed eth0} ${color grey} - Down:$color ${downspeed eth0}
+Ip:${addr eth0}
+$hr
+EOT
+
+chmod +x /etc/conky/conky.conf
+
+
 systemctl enable xiboplayer.service
 
 echo "GUI enabled"
