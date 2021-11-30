@@ -13,3 +13,15 @@ It focuses on low ram and cpu usage so only needed components will be installed 
 # Usage
 
 yum install wget -y -y && wget https://raw.githubusercontent.com/AydinFatoglu/Xibo-Linux-PlayerOS-centos7/main/autoinstall.sh && chmod +x autoinstall.sh && ./autoinstall.sh
+
+
+# Configuration
+
+Here are some predefined configuration variables to make your life easy 
+
+- xibouser
+- loginpass
+- vncpass
+- systimezone 
+use cmd to get the list: timedatectl list-timezones
+
