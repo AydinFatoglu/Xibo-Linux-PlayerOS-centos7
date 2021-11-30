@@ -115,18 +115,10 @@ systemctl stop firewalld
 systemctl disable firewalld > /dev/null 2>&1
 systemctl daemon-reload
 
-echo "Configureing  XiboPlayer AutoStart / Crash Control Script"
+echo "Configureing  Start on Login [VNC / CONKY]"
 
 mkdir -p /home/$xibouser/.config/openbox
 cp ~/startvnc /home/$xibouser/.config/openbox/
-
-cat <<EOT >> /home/$xibouser/.config/openbox/playercontrol.sh
-#!/usr/bin/bash
-while "true"
-do
-  xibo-player
-done
-EOT
 
 cat <<EOT >> /home/$xibouser/.config/openbox/conkyshow.sh
 #!/usr/bin/bash
@@ -136,17 +128,15 @@ EOT
 
 cat <<EOT >> /home/$xibouser/.config/openbox/autostart.sh
 .config/openbox/startvnc start &
-.config/openbox/playercontrol.sh &
 .config/openbox/conkyshow.sh &
 EOT
 
 chmod +x /home/$xibouser/.config/openbox/autostart.sh
-chmod +x /home/$xibouser/.config/openbox/playercontrol.sh
 chmod +x /home/$xibouser/.config/openbox/conkyshow.sh
 
 echo "Configureing  XiboPlayer as Service"
 
-cat <<EOT >> /etc/systemd/system/xiboplayer.service
+cat <<EOT >> /etc/systemd/system/xibo.service
 [Unit]
 Description=Service Xibo-client
 [Service]
@@ -160,8 +150,8 @@ Restart=always
 WantedBy=default.target
 EOT
 
-chmod +x /etc/systemd/system/xiboplayer.service
-systemctl enable xiboplayer.service > /dev/null 2>&1
+chmod +x /etc/systemd/system/xibo.service
+systemctl enable xibo.service > /dev/null 2>&1
 
 echo "Configureing  Conky"
 
