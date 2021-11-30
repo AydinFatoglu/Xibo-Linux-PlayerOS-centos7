@@ -127,7 +127,7 @@ conky &
 EOT
 
 cat <<EOT >> /home/$xibouser/.config/openbox/autostart.sh
-#.config/openbox/startvnc start &
+.config/openbox/startvnc start &
 .config/openbox/conkyshow.sh &
 EOT
 
@@ -153,24 +153,7 @@ EOT
 chmod +x /etc/systemd/system/xibo.service
 systemctl enable xibo.service > /dev/null 2>&1
 
-echo "Configureing  VNCServer as Service"
 
-cat <<EOT >> /etc/systemd/system/vncserver.service
-[Unit]
-Description=Service VNC
-[Service]
-Type=simple
-RestartSec=5
-Environment=DISPLAY=:0
-User=root
-ExecStart=/usr/bin/sh -c 'sleep 3 && /usr/bin/x0vncserver -display :0 -rfbport 5900 -passwordfile /home/$xibouser/.vnc/passwd &'
-Restart=always
-[Install]
-WantedBy=default.target
-EOT
-
-chmod +x /etc/systemd/system/vncserver.service
-systemctl enable vncserver.service > /dev/null 2>&1
 
 
 echo "Configureing  Conky"
