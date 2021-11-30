@@ -97,29 +97,25 @@ yum install -y terminator > /dev/null 2>&1
 
 echo "Downloading and Installing TightVNC Server"
 yum install -y tigervnc-server > /dev/null 2>&1
+
 echo "Configureing TightVNC Server"
-
-#cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver_$xibouser@:2.service > /dev/null 2>&1
-#sed -i 's/<USER>/$xibouser/g' /etc/systemd/system/vncserver_$xibouser@:2.service > /dev/null 2>&1
-systemctl stop firewalld
-systemctl disable firewalld > /dev/null 2>&1
-systemctl daemon-reload
-
-
 
 mkdir /home/$xibouser/.vnc
 echo $vncpass | vncpasswd -f > /home/$xibouser/.vnc/passwd
 chown -R $xibouser:$xibouser /home/$xibouser/.vnc
 chmod 0600 /home/$xibouser/.vnc/passwd
 
-systemctl enable vncserver@:2.service > /dev/null 2>&1
-systemctl start vncserver@:2.service > /dev/null 2>&1
-
 git clone https://github.com/sebestyenistvan/runvncserver > /dev/null 2>&1
 cp ~/runvncserver/startvnc ~
 chmod +x ~/startvnc
 
-echo "Configureing AutoStart XiboPlayer"
+echo "Configureing Firewall"
+
+systemctl stop firewalld
+systemctl disable firewalld > /dev/null 2>&1
+systemctl daemon-reload
+
+echo "Configureing AutoStart / cCONTROL XiboPlayer"
 
 mkdir -p /home/$xibouser/.config/openbox
 cp ~/startvnc /home/$xibouser/.config/openbox/
@@ -137,7 +133,6 @@ cat <<EOT >> /home/$xibouser/.config/openbox/autostart.sh
 .config/openbox/startvnc start &
 .config/openbox/playercontrol.sh &
 EOT
-
 chmod +x /home/$xibouser/.config/openbox/autostart.sh
 
 echo "GUI enabled"
