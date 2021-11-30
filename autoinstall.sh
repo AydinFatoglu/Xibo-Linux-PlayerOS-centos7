@@ -115,7 +115,7 @@ systemctl stop firewalld
 systemctl disable firewalld > /dev/null 2>&1
 systemctl daemon-reload
 
-echo "Configureing AutoStart / cCONTROL XiboPlayer"
+echo "Configureing  XiboPlayer AutoStart / Crash Control Script"
 
 mkdir -p /home/$xibouser/.config/openbox
 cp ~/startvnc /home/$xibouser/.config/openbox/
@@ -127,12 +127,14 @@ do
   xibo-player
 done
 EOT
+
 chmod +x /home/$xibouser/.config/openbox/playercontrol.sh
 
 cat <<EOT >> /home/$xibouser/.config/openbox/autostart.sh
 .config/openbox/startvnc start &
 .config/openbox/playercontrol.sh &
 EOT
+
 chmod +x /home/$xibouser/.config/openbox/autostart.sh
 
 echo "GUI enabled"
