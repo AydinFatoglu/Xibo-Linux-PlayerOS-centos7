@@ -119,11 +119,11 @@ cp ~/startvnc /home/$xibouser/.config/openbox/
 cat <<EOT >> /home/$xibouser/.config/openbox/conkyshow.sh
 #!/usr/bin/bash
 
-conky &
+#conky &
 EOT
 
 cat <<EOT >> /home/$xibouser/.config/openbox/autostart.sh
-.config/openbox/conkyshow.sh &
+#.config/openbox/conkyshow.sh &
 EOT
 
 chmod +x /home/$xibouser/.config/openbox/autostart.sh
