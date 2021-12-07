@@ -116,14 +116,14 @@ echo "Configureing Start on Login"
 
 mkdir -p /home/$xibouser/.config/openbox
 
-
 cat <<EOT >> /home/$xibouser/.config/openbox/conkyshow.sh
 #!/usr/bin/bash
-
+# Example sh file for use with autostart.sh Uncomment below line to use
 #conky &
 EOT
 
 cat <<EOT >> /home/$xibouser/.config/openbox/autostart.sh
+# Example autostart.sh for Openbox Uncomment below line to use
 #.config/openbox/conkyshow.sh &
 EOT
 
