@@ -115,7 +115,7 @@ systemctl daemon-reload
 echo "Configureing Start on Login"
 
 mkdir -p /home/$xibouser/.config/openbox
-cp ~/startvnc /home/$xibouser/.config/openbox/
+
 
 cat <<EOT >> /home/$xibouser/.config/openbox/conkyshow.sh
 #!/usr/bin/bash
