@@ -178,8 +178,26 @@ EOT
 chmod +x /etc/systemd/system/vnc.service
 systemctl enable vnc.service > /dev/null 2>&1
 
+echo "Configureing  Conky as Service"
 
-echo "Configureing  Conky"
+cat <<EOT >> /etc/systemd/system/conky.service
+[Unit]
+Description=Service Conky
+[Service]
+Type=simple
+RestartSec=5
+Environment=DISPLAY=:0
+User=$xibouser
+ExecStart=/usr/bin/conky
+Restart=always
+[Install]
+WantedBy=default.target
+EOT
+
+chmod +x /etc/systemd/system/conky.service
+systemctl enable conky.service > /dev/null 2>&1
+
+echo "Overwriteing Default Conky Config "
 
 rm -f /etc/conky/conky.conf
 wget -P /etc/conky/ https://raw.githubusercontent.com/AydinFatoglu/Xibo-Linux-PlayerOS-centos7/main/conky.conf > /dev/null 2>&1
@@ -191,10 +209,10 @@ echo "Setting Time Zone"
 sudo timedatectl set-timezone $systimezone
 
 
-echo "Auto Login is configured for user ttsignage"
+echo "Auto Login is configured for user: $xibouser"
 
 cd /etc/gdm/
-sed -i "4i AutomaticLogin=ttsignage" custom.conf
+sed -i "4i AutomaticLogin=$xibouser" custom.conf
 sed -i "5i AutomaticLoginEnable=True" custom.conf
 
 echo "Never Sleep configured"
