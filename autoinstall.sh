@@ -2,9 +2,9 @@
 
 #Configuration
 ###############
-xibouser=signageuser
-loginpass=signagepass
-vncpass=signagepass
+xibouser=user
+loginpass=1234.
+vncpass=88888888
 systimezone=Europe/Istanbul 
 # use cmd to get the list: timedatectl list-timezones
 ###############
