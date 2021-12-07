@@ -137,7 +137,7 @@ cat <<EOT >> /etc/systemd/system/xibo.service
 Description=Service Xibo-client
 [Service]
 Type=simple
-RestartSec=30
+RestartSec=10
 Environment=DISPLAY=:0
 User=$xibouser
 ExecStart=/snap/bin/xibo-player
