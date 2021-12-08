@@ -15,6 +15,8 @@ It focuses on low ram and cpu usage so only needed components will be installed 
 
 yum install wget -y -y && wget https://raw.githubusercontent.com/AydinFatoglu/Xibo-Linux-PlayerOS-centos7/main/autoinstall.sh && chmod +x autoinstall.sh && ./autoinstall.sh
 
+yum install wget -y -y && wget https://raw.githubusercontent.com/AydinFatoglu/Xibo-Linux-PlayerOS-centos7/main/centos8.sh && chmod +x centos8.sh && ./centos8.sh
+
 
 # Configuration
 
