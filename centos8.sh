@@ -89,7 +89,7 @@ sleep 3
 sudo snap install xibo-player
 
 echo "Downloading and Installing TightVNC Server"
-yum install -y tigervnc-server
+dnf install tigervnc-server
 
 echo "Configureing TightVNC Server"
 
@@ -97,6 +97,9 @@ mkdir /home/$xibouser/.vnc
 echo $vncpass | vncpasswd -f > /home/$xibouser/.vnc/passwd
 chown -R $xibouser:$xibouser /home/$xibouser/.vnc
 chmod 0600 /home/$xibouser/.vnc/passwd
+
+cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@:1.service
+
 
 echo "Configureing Firewall"
 
@@ -130,27 +133,18 @@ echo "Configureing  VNC as Service"
 
 cat <<EOT >> /etc/systemd/system/vnc.service
 [Unit]
-Description=Remote desktop service (VNC) for :0 display
-
-# Require start of
-Requires=display-manager.service
-
-# Wait for
-After=network-online.target
-After=display-manager.service
+Description=Remote desktop service (VNC)
+After=syslog.target network.target
 
 [Service]
 Type=forking
-
-# Start command
-ExecStart=/usr/bin/sh -c 'sleep 3 && /usr/bin/x0vncserver -display :0 -rfbport 5900 -passwordfile /home/$xibouser/.vnc/passwd &'
-
-# Restart service after session log out
-Restart=on-failure
-RestartSec=10
+ExecStart=/usr/libexec/vncsession-start %i
+PIDFile=/run/vncsession-%i.pid
+SELinuxContext=system_u:system_r:vnc_session_t:s0
 
 [Install]
 WantedBy=multi-user.target
+
 EOT
 
 chmod +x /etc/systemd/system/vnc.service
