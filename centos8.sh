@@ -77,8 +77,8 @@ yum install wget -y > /dev/null 2>&1
 
 echo "Downloading and Installing Snap For Centos 8"
 
-sudo dnf install epel-release
-sudo dnf upgrade
+sudo dnf install epel-release -y -y > /dev/null 2>&1
+sudo dnf upgrade -y -y > /dev/null 2>&1
 sudo yum install snapd -y > /dev/null 2>&1
 sudo systemctl enable --now snapd.socket > /dev/null 2>&1
 sudo ln -s /var/lib/snapd/snap /snap > /dev/null 2>&1
