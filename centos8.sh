@@ -24,7 +24,7 @@ cat << "EOF"
                                                                      /$$  | $$                                              
                                                                     |  $$$$$$/                                              
                                                                      \______/                                               
-Fully automated installer for Centos 8 (v2009) x64 platform By AYDINFATOGLU
+Fully automated installer for Centos 8 (v211) x64 platform By AYDINFATOGLU
 EOF
 echo ""
 echo ""
@@ -59,33 +59,26 @@ cat << "EOF"
                                                                      /$$  | $$                                              
                                                                     |  $$$$$$/                                              
                                                                      \______/                                               
-Fully automated installer for Centos 8 (v2009) x64 platform By AYDINFATOGLU
+Fully automated installer for Centos 8 (v211) x64 platform By AYDINFATOGLU
 EOF
 
 
 echo ""
 echo ""
-echo "Downloading and Installing GUI [X Window System / xorg / GDM / Openbox]"
-echo "Downloading and Installing GUI [X Window System]"
-yum groupinstall "X Window System" -y > /dev/null 2>&1
-echo "Downloading and Installing GUI [xorg]"
-yum install xorg* -y > /dev/null 2>&1
-echo "Downloading and Installing GUI [GDM]"
-yum install epel-release -y > /dev/null 2>&1
-yum install gdm -y > /dev/null 2>&1
-echo "Downloading and Installing GUI [Openbox]"
-yum install openbox -y > /dev/null 2>&1
+echo "Downloading and Installing GUI [GNOME Clasic Session / GDM]"
+yum install gnome-classic-session > /dev/null 2>&1
+
 
 echo "Downloading and Installing Prerequsits"
 yum install git -y > /dev/null 2>&1
 yum install nano -y > /dev/null 2>&1
 yum install wget -y > /dev/null 2>&1
-yum install net-tools -y > /dev/null 2>&1
-yum install conky -y > /dev/null 2>&1
-yum install -y terminator > /dev/null 2>&1
 
-echo "Downloading and Installing Snap For Centos 7"
 
+echo "Downloading and Installing Snap For Centos 8"
+
+sudo dnf install epel-release
+sudo dnf upgrade
 sudo yum install snapd -y > /dev/null 2>&1
 sudo systemctl enable --now snapd.socket > /dev/null 2>&1
 sudo ln -s /var/lib/snapd/snap /snap > /dev/null 2>&1
@@ -114,21 +107,6 @@ systemctl daemon-reload
 
 echo "Configureing Start on Login"
 
-mkdir -p /home/$xibouser/.config/openbox
-
-cat <<EOT >> /home/$xibouser/.config/openbox/conkyshow.sh
-#!/usr/bin/bash
-# Example sh file for use with autostart.sh Uncomment below line to use
-#conky &
-EOT
-
-cat <<EOT >> /home/$xibouser/.config/openbox/autostart.sh
-# Example autostart.sh for Openbox Uncomment below line to use
-#.config/openbox/conkyshow.sh &
-EOT
-
-chmod +x /home/$xibouser/.config/openbox/autostart.sh
-chmod +x /home/$xibouser/.config/openbox/conkyshow.sh
 
 echo "Configureing  XiboPlayer as Service"
 
@@ -198,11 +176,7 @@ EOT
 chmod +x /etc/systemd/system/conky.service
 systemctl enable conky.service > /dev/null 2>&1
 
-echo "Overwriteing Default Conky Config "
 
-rm -f /etc/conky/conky.conf
-wget -P /etc/conky/ https://raw.githubusercontent.com/AydinFatoglu/Xibo-Linux-PlayerOS-centos7/main/conky.conf > /dev/null 2>&1
-chmod +x /etc/conky/conky.conf
 
 echo "GUI enabled"
 systemctl set-default graphical.target > /dev/null 2>&1
