@@ -31,8 +31,8 @@ echo ""
 
 
 
-id -u $xibouser &>/dev/null || useradd $xibouser > /dev/null 2>&1
-echo $loginpass | passwd $xibouser --stdin > /dev/null 2>&1
+id -u $xibouser &>/dev/null || useradd $xibouser 
+echo $loginpass | passwd $xibouser --stdin
 
 
 
@@ -66,31 +66,30 @@ EOF
 echo ""
 echo ""
 echo "Downloading and Installing GUI [GNOME Clasic Session / GDM]"
-yum install gnome-classic-session > /dev/null 2>&1
-
+yum install gnome-classic-session -y 
 
 echo "Downloading and Installing Prerequsits"
-yum install git -y > /dev/null 2>&1
-yum install nano -y > /dev/null 2>&1
-yum install wget -y > /dev/null 2>&1
+yum install git -y
+yum install nano -y
+yum install wget -y
 
 
 echo "Downloading and Installing Snap For Centos 8"
 
-sudo dnf install epel-release -y -y > /dev/null 2>&1
-sudo dnf upgrade -y -y > /dev/null 2>&1
-sudo yum install snapd -y > /dev/null 2>&1
-sudo systemctl enable --now snapd.socket > /dev/null 2>&1
-sudo ln -s /var/lib/snapd/snap /snap > /dev/null 2>&1
+sudo dnf install epel-release -y -y
+sudo dnf upgrade -y -y
+sudo yum install snapd -y
+sudo systemctl enable --now snapd.socket
+sudo ln -s /var/lib/snapd/snap /snap
 
 echo "Downloading and Installing Xibo Player From Snap"
 
-sudo snap install xibo-player > /dev/null 2>&1
+sudo snap install xibo-player
 sleep 3
-sudo snap install xibo-player > /dev/null 2>&1
+sudo snap install xibo-player
 
 echo "Downloading and Installing TightVNC Server"
-yum install -y tigervnc-server > /dev/null 2>&1
+yum install -y tigervnc-server
 
 echo "Configureing TightVNC Server"
 
@@ -102,7 +101,7 @@ chmod 0600 /home/$xibouser/.vnc/passwd
 echo "Configureing Firewall"
 
 systemctl stop firewalld
-systemctl disable firewalld > /dev/null 2>&1
+systemctl disable firewalld
 systemctl daemon-reload
 
 echo "Configureing Start on Login"
@@ -125,7 +124,7 @@ WantedBy=default.target
 EOT
 
 chmod +x /etc/systemd/system/xibo.service
-systemctl enable xibo.service > /dev/null 2>&1
+systemctl enable xibo.service
 
 echo "Configureing  VNC as Service"
 
@@ -155,31 +154,14 @@ WantedBy=multi-user.target
 EOT
 
 chmod +x /etc/systemd/system/vnc.service
-systemctl enable vnc.service > /dev/null 2>&1
+systemctl enable vnc.service
 
-echo "Configureing  Conky as Service"
 
-cat <<EOT >> /etc/systemd/system/conky.service
-[Unit]
-Description=Service Conky
-[Service]
-Type=simple
-RestartSec=5
-Environment=DISPLAY=:0
-User=$xibouser
-ExecStart=/usr/bin/conky
-Restart=always
-[Install]
-WantedBy=default.target
-EOT
-
-chmod +x /etc/systemd/system/conky.service
-systemctl enable conky.service > /dev/null 2>&1
 
 
 
 echo "GUI enabled"
-systemctl set-default graphical.target > /dev/null 2>&1
+systemctl set-default graphical.target
 echo "Setting Time Zone"
 sudo timedatectl set-timezone $systimezone
 
@@ -191,7 +173,7 @@ sed -i "4i AutomaticLogin=$xibouser" custom.conf
 sed -i "5i AutomaticLoginEnable=True" custom.conf
 
 echo "Never Sleep configured"
-systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target > /dev/null 2>&1
+systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
 
 echo "Schedule Reboot configured"
 echo '00 1 * * * sudo shutdown -r' >>/etc/crontab
