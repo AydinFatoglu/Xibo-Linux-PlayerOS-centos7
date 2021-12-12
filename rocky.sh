@@ -98,6 +98,9 @@ cd /etc/gdm/
 sed -i "4i AutomaticLogin=$xibouser" custom.conf
 sed -i "5i AutomaticLoginEnable=True" custom.conf
 
+echo "Setting Time Zone"
+sudo timedatectl set-timezone $systimezone
+
 
 
 
