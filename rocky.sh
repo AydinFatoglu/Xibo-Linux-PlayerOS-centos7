@@ -1,4 +1,14 @@
+#!/bin/bash
 
+#Configuration
+###############
+xibouser=user
+loginpass=1234.
+vncpass=88888888
+domain=signage.local
+systimezone=Europe/Istanbul 
+# use cmd to get the list: timedatectl list-timezones
+###############
 
 
 
