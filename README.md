@@ -17,6 +17,8 @@ yum install wget -y -y && wget https://raw.githubusercontent.com/AydinFatoglu/Xi
 
 yum install wget -y -y && wget https://raw.githubusercontent.com/AydinFatoglu/Xibo-Linux-PlayerOS-centos7/main/centos8.sh && chmod +x centos8.sh && ./centos8.sh
 
+yum install wget -y -y && wget https://raw.githubusercontent.com/AydinFatoglu/Xibo-Linux-PlayerOS-centos7/main/rocky.sh && chmod +x rocky.sh && ./rocky.sh
+
 
 # Configuration
 
