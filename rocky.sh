@@ -63,11 +63,46 @@ systemctl enable xibo.service
 
 
 sudo dnf install tigervnc-server -y
-sudo cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@:1.service
+
+cat <<EOT >> /etc/systemd/system/vnc.service
+[Unit]
+Description=Remote desktop service (VNC)
+After=syslog.target network.target
+
+[Service]
+Type=forking
+ExecStart=/usr/libexec/vncsession-start %i
+PIDFile=/run/vncsession-%i.pid
+SELinuxContext=system_u:system_r:vnc_session_t:s0
+
+# Restart service after session log out
+Restart=on-failure
+RestartSec=10
+
+
+[Install]
+WantedBy=multi-user.target
+EOT
+
+chmod +x /etc/systemd/system/vnc.service
+systemctl enable vnc.service
+
+
+
 mkdir /home/$xibouser/.vnc
 echo $vncpass | vncpasswd -f > /home/$xibouser/.vnc/passwd
 chown -R $xibouser:$xibouser /home/$xibouser/.vnc
 chmod 0600 /home/$xibouser/.vnc/passwd
+
+
+
+
+
+
+
+
+
+
 
 
 
