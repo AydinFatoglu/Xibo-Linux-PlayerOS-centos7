@@ -29,7 +29,7 @@ clear
 dnf update -y -y
 dnf upgrade -y -y
 sudo dnf install epel-release -y -y
-sudo dnf groupinstall "Xfce" "base-x" -y
+yum install gnome-classic-session -y
 systemctl set-default graphical
 
 sudo yum install snapd -y
