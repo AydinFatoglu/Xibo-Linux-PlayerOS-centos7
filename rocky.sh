@@ -28,30 +28,62 @@ clear
 
 dnf update -y -y
 dnf upgrade -y -y
-dnf install gnome-classic-session -y
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+sudo dnf install epel-release -y -y
+sudo dnf groupinstall "Xfce" "base-x" -y
 systemctl set-default graphical
+
+sudo yum install snapd -y
+sudo systemctl enable --now snapd.socket
+sudo ln -s /var/lib/snapd/snap /snap
+
+sudo snap install xibo-player
+sleep 3
+sudo snap install xibo-player
+
+echo "Configureing  XiboPlayer as Service"
+
+cat <<EOT >> /etc/systemd/system/xibo.service
+[Unit]
+Description=Service Xibo-client
+[Service]
+Type=simple
+RestartSec=10
+Environment=DISPLAY=:0
+User=$xibouser
+ExecStart=/snap/bin/xibo-player
+Restart=always
+[Install]
+WantedBy=default.target
+EOT
+
+chmod +x /etc/systemd/system/xibo.service
+systemctl enable xibo.service
+
+
+
+
+sudo dnf install tigervnc-server -y
+sudo cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@:1.service
+mkdir /home/$xibouser/.vnc
+echo $vncpass | vncpasswd -f > /home/$xibouser/.vnc/passwd
+chown -R $xibouser:$xibouser /home/$xibouser/.vnc
+chmod 0600 /home/$xibouser/.vnc/passwd
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
