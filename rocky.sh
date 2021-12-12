@@ -94,6 +94,10 @@ echo $vncpass | vncpasswd -f > /home/$xibouser/.vnc/passwd
 chown -R $xibouser:$xibouser /home/$xibouser/.vnc
 chmod 0600 /home/$xibouser/.vnc/passwd
 
+cd /etc/gdm/
+sed -i "4i AutomaticLogin=$xibouser" custom.conf
+sed -i "5i AutomaticLoginEnable=True" custom.conf
+
 
 
 
