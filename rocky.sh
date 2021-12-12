@@ -70,7 +70,7 @@ chown -R $xibouser:$xibouser /home/$xibouser/.vnc
 chmod 0600 /home/$xibouser/.vnc/passwd
 
 sudo cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@:1.service
-echo ':1=$xibouser' >>/etc/crontab
+echo ':1=$xibouser' >>/etc/tigervnc/vncserver.users
 
 
 systemctl daemon-reload
