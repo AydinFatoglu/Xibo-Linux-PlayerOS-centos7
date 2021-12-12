@@ -50,7 +50,7 @@ Type=simple
 RestartSec=10
 Environment=DISPLAY=:0
 User=$xibouser
-ExecStart=/snap/bin/xibo-player
+ExecStart=/bin/bash -c '/snap/bin/xibo-player'
 Restart=always
 [Install]
 WantedBy=default.target
@@ -64,7 +64,7 @@ systemctl enable xibo.service
 
 sudo dnf install tigervnc-server -y
 
-cat <<EOT >> /etc/systemd/system/vnc.service
+cat <<EOT >> /etc/systemd/system/vnc@:1.service
 [Unit]
 Description=Remote desktop service (VNC)
 After=syslog.target network.target
@@ -84,8 +84,8 @@ RestartSec=10
 WantedBy=multi-user.target
 EOT
 
-chmod +x /etc/systemd/system/vnc.service
-systemctl enable vnc.service
+chmod +x /etc/systemd/system/vnc@:1.service
+systemctl enable vnc@:1.service
 
 
 
