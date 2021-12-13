@@ -70,45 +70,22 @@ chown -R $xibouser:$xibouser /home/$xibouser/.vnc
 chmod 0600 /home/$xibouser/.vnc/passwd
 
 sudo cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@:1.service
-echo ':1=$xibouser' >>/etc/tigervnc/vncserver.users
 
+rm /etc/tigervnc/vncserver.users
+
+cat <<EOT >> /etc/tigervnc/vncserver.users
+:1=$xibouser
+EOT
 
 systemctl daemon-reload
 systemctl enable vncserver@:1.service
 
+firewall-cmd --zone=public --permanent --add-service=vnc-server
+firewall-cmd --reload
 
 cd /etc/gdm/
 sed -i "4i AutomaticLogin=$xibouser" custom.conf
 sed -i "5i AutomaticLoginEnable=True" custom.conf
 
-echo "Setting Time Zone"
+
 sudo timedatectl set-timezone $systimezone
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
