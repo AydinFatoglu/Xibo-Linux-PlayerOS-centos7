@@ -85,6 +85,9 @@ systemctl enable vncserver@:1.service
 firewall-cmd --zone=public --permanent --add-service=vnc-server
 firewall-cmd --reload
 
+sudo yum install terminator -y
+sudo yum install nano -y
+
 cd /etc/gdm/
 sed -i "4i AutomaticLogin=$xibouser" custom.conf
 sed -i "5i AutomaticLoginEnable=True" custom.conf
