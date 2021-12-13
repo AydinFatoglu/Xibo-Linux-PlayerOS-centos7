@@ -13,6 +13,8 @@ systimezone=Europe/Istanbul
 id -u $xibouser &>/dev/null || useradd $xibouser
 echo $loginpass | passwd $xibouser --stdin
 
+clear
+
 host="USER INPUT"
 read -p "YOU MUST ENTER A NEW HOSTNAME: " host
 hostnamectl set-hostname $host.$domain
