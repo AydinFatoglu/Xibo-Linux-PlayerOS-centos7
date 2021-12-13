@@ -72,6 +72,7 @@ chown -R $xibouser:$xibouser /home/$xibouser/.vnc
 chmod 0600 /home/$xibouser/.vnc/passwd
 
 sudo cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@:1.service
+chmod +x /etc/systemd/system/vncserver@:1.service
 
 rm /etc/tigervnc/vncserver.users
 
