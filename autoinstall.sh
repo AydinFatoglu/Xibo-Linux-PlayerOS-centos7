@@ -70,8 +70,16 @@ echo "Downloading and Installing GUI [X Window System]"
 yum groupinstall "X Window System" -y > /dev/null 2>&1
 echo "Downloading and Installing GUI [xorg]"
 yum install xorg* -y > /dev/null 2>&1
-echo "Downloading and Installing GUI [GDM]"
+echo "Downloading and Installing Cockpit"
 yum install epel-release -y > /dev/null 2>&1
+yum update -y > /dev/null 2>&1
+yum install cockpit  -y > /dev/null 2>&1
+systemctl start cockpit
+systemctl enable cockpit.socket
+firewall-cmd --add-service=cockpit
+firewall-cmd --add-service=cockpit --permanent
+firewall-cmd --reload
+echo "Downloading and Installing GUI [GDM]"
 yum install gdm -y > /dev/null 2>&1
 echo "Downloading and Installing GUI [Openbox]"
 yum install openbox -y > /dev/null 2>&1
