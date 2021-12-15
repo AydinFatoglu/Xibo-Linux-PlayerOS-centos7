@@ -223,7 +223,7 @@ echo "Never Sleep configured"
 systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target > /dev/null 2>&1
 
 echo "Schedule Reboot configured"
-echo '00 1 * * * sudo shutdown -r' >>/etc/crontab
+echo '0 1 * * * root /sbin/shutdown -r now' >>/etc/crontab
 
 echo "ALL DONE!!!! - REBOOTING NOW..."
 sleep 5
