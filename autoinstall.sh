@@ -116,19 +116,22 @@ echo "Configureing Start on Login"
 
 mkdir -p /home/$xibouser/.config/openbox
 
-cat <<EOT >> /home/$xibouser/.config/openbox/conkyshow.sh
+cat <<EOT >> /home/$xibouser/.config/openbox/lcdalwayson.sh
 #!/usr/bin/bash
 # Example sh file for use with autostart.sh Uncomment below line to use
-#conky &
+# Keep screen on
+xset -dpms     # Disable DPMS (Energy Star) features
+xset s off     # Disable screensaver
+xset s noblank # Don't blank video device
 EOT
 
 cat <<EOT >> /home/$xibouser/.config/openbox/autostart.sh
 # Example autostart.sh for Openbox Uncomment below line to use
-#.config/openbox/conkyshow.sh &
+.config/openbox/lcdalwayson.sh &
 EOT
 
 chmod +x /home/$xibouser/.config/openbox/autostart.sh
-chmod +x /home/$xibouser/.config/openbox/conkyshow.sh
+chmod +x /home/$xibouser/.config/openbox/lcdalwayson.sh
 
 echo "Configureing  XiboPlayer as Service"
 
