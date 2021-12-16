@@ -232,7 +232,13 @@ systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target 
 
 echo "Schedule Reboot configured"
 echo '1 0 * * * root /sbin/shutdown -r now' >>/etc/crontab
+echo '@reboot root /root/term.sh' >>/etc/crontab
 systemctl enable crond
+
+echo "Configureing Network Control Script"
+wget https://raw.githubusercontent.com/AydinFatoglu/Xibo-Linux-PlayerOS-centos7/main/netcontrol.sh > /dev/null 2>&1
+chmod +x netcontrol.sh
+
 
 echo "ALL DONE!!!! - REBOOTING NOW..."
 sleep 5
