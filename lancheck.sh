@@ -1,5 +1,9 @@
+#!/bin/bash
+while true ; do
+
 if /sbin/ethtool eth0 | grep -q "Link detected: yes"; then
-    echo "Online"
+    sleep 90
 else
-    echo "Not online"
+    /sbin/shutdown -r now
 fi
+done
