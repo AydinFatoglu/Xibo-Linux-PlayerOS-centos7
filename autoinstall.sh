@@ -72,6 +72,7 @@ echo "Downloading and Installing GUI [xorg]"
 yum install xorg* -y > /dev/null 2>&1
 echo "Downloading and Installing Cockpit"
 yum install epel-release -y > /dev/null 2>&1
+echo "Downloading and Installing OS Updates"
 yum update -y > /dev/null 2>&1
 yum install cockpit  -y > /dev/null 2>&1
 systemctl start cockpit
