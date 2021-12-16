@@ -12,16 +12,18 @@ It focuses on low ram and cpu usage so only needed components will be installed 
 - It will auto restart the operating system every night at 12 AM.
 - It will auto restart the operating system if netwok lose
 
-# Usage
-
+# Installers
+**Centos 7**
 yum install wget -y -y && wget https://raw.githubusercontent.com/AydinFatoglu/Xibo-Linux-PlayerOS-centos7/main/autoinstall.sh && chmod +x autoinstall.sh && ./autoinstall.sh
-
+**Centos 8**
 yum install wget -y -y && wget https://raw.githubusercontent.com/AydinFatoglu/Xibo-Linux-PlayerOS-centos7/main/centos8.sh && chmod +x centos8.sh && ./centos8.sh
-
+**Rocky Linux 8**
 yum install wget -y -y && wget https://raw.githubusercontent.com/AydinFatoglu/Xibo-Linux-PlayerOS-centos7/main/rocky.sh && chmod +x rocky.sh && ./rocky.sh
 
 
 # Configuration
+
+yum install wget -y -y && wget https://raw.githubusercontent.com/AydinFatoglu/Xibo-Linux-PlayerOS-centos7/main/configure.sh && chmod +x configure.sh && ./configure.sh
 
 Here are some predefined configuration variables to make your life easy.
 
