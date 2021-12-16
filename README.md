@@ -9,7 +9,8 @@ It focuses on low ram and cpu usage so only needed components will be installed 
 - It will auto start Xibo Linux Player on logon.
 - It will auto start Vnc remote accsess when system boots.
 - It will auto start Xibo Linux Player if Crashes.
-- It will auto restart the operating system every night at 1 AM.
+- It will auto restart the operating system every night at 12 AM.
+- It will auto restart the operating system if netwok lose
 
 # Usage
 
