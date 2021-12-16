@@ -35,7 +35,7 @@ yum install wget -y -y && wget https://raw.githubusercontent.com/AydinFatoglu/Xi
 
 Here are some predefined configuration variables to make your life easy.
 
-Check the configuration section of the script for mare details.
+Check configuration section of the script for more details.
 
 - xibouser - Auto logon system user
 - loginpass - Auto logon system password for user
