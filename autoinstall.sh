@@ -75,8 +75,8 @@ yum install epel-release -y > /dev/null 2>&1
 echo "Downloading and Installing OS Updates"
 yum update -y > /dev/null 2>&1
 yum install cockpit  -y > /dev/null 2>&1
-systemctl start cockpit
-systemctl enable cockpit.socket
+systemctl start cockpit > /dev/null 2>&1
+systemctl enable cockpit.socket > /dev/null 2>&1
 firewall-cmd --add-service=cockpit
 firewall-cmd --add-service=cockpit --permanent
 firewall-cmd --reload
@@ -233,11 +233,12 @@ systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target 
 
 echo "Schedule Reboot configured"
 echo '1 0 * * * root /sbin/shutdown -r now' >>/etc/crontab
-echo '@reboot root /root/term.sh' >>/etc/crontab
+echo '@reboot root /root/netcontrol.sh' >>/etc/crontab
 systemctl enable crond
 
 echo "Configureing Network Control Script"
 wget https://raw.githubusercontent.com/AydinFatoglu/Xibo-Linux-PlayerOS-centos7/main/netcontrol.sh > /dev/null 2>&1
+cp netcontrol.sh /root/
 chmod +x netcontrol.sh
 
 
