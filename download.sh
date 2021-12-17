@@ -96,8 +96,8 @@ chmod +x /etc/conky/conky.conf
 
 echo "Configureing Network Control Script"
 wget https://raw.githubusercontent.com/AydinFatoglu/Xibo-Linux-PlayerOS-centos7/main/netcontrol.sh > /dev/null 2>&1
-cp lancontrol.sh /root/
-chmod +x /root/lancontrol.sh
+cp netcontrol.sh /root/
+chmod +x /root/netcontrol.sh
 
 
 echo "ALL DONE!!!! - REBOOTING NOW..."
