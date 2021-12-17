@@ -190,7 +190,7 @@ systemctl enable crond
 echo "Configureing Network Control Script"
 wget https://raw.githubusercontent.com/AydinFatoglu/Xibo-Linux-PlayerOS-centos7/main/lancontrol.sh > /dev/null 2>&1
 cp lancontrol.sh /root/
-chmod +x lancontrol.sh
+chmod +x /root/lancontrol.sh
 
 
 echo "ALL DONE!!!! - REBOOTING NOW..."
