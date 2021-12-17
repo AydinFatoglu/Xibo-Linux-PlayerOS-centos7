@@ -15,7 +15,7 @@ cat << "EOF"
                                                                      \______/                                               
 Fully automated installer for Centos 7 (v2009) x64 platform By AYDINFATOGLU
 EOF
-echo "Download ONLY"
+echo "Downloader / Installer ONLY"
 echo ""
 
 echo "STARTING NOW!!!"
@@ -38,7 +38,7 @@ Fully automated installer for Centos 7 (v2009) x64 platform By AYDINFATOGLU
 EOF
 
 
-echo "Download ONLY"
+echo "Downloader / Installer ONLY"
 echo ""
 
 echo "Downloading and Installing GUI [X Window System]"
