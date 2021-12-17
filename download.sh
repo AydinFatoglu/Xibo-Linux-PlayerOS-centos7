@@ -15,11 +15,11 @@ cat << "EOF"
                                                                      \______/                                               
 Fully automated installer for Centos 7 (v2009) x64 platform By AYDINFATOGLU
 EOF
-echo ""
+echo "Download ONLY"
 echo ""
 
 echo "STARTING NOW!!!"
-sleep 2
+sleep 6
 clear
 
 cat << "EOF"
@@ -38,7 +38,7 @@ Fully automated installer for Centos 7 (v2009) x64 platform By AYDINFATOGLU
 EOF
 
 
-echo ""
+echo "Download ONLY"
 echo ""
 
 echo "Downloading and Installing GUI [X Window System]"
@@ -47,12 +47,15 @@ echo "Downloading and Installing GUI [xorg]"
 yum install xorg* -y > /dev/null 2>&1
 
 yum install epel-release -y > /dev/null 2>&1
-echo "Downloading and Installing OS Updates"
-yum update -y > /dev/null 2>&1
+
 echo "Downloading and Installing GUI [GDM]"
 yum install gdm -y > /dev/null 2>&1
 echo "Downloading and Installing GUI [Openbox]"
 yum install openbox -y > /dev/null 2>&1
+
+echo "Downloading and Installing OS Updates"
+yum update -y > /dev/null 2>&1
+
 echo "Downloading and Installing Cockpit"
 yum install cockpit  -y > /dev/null 2>&1
 systemctl start cockpit > /dev/null 2>&1
@@ -94,8 +97,8 @@ chmod +x /etc/conky/conky.conf
 
 
 echo "Configureing Network Control Script"
+rm -f /etc/conky/netcontrol.sh
 wget https://raw.githubusercontent.com/AydinFatoglu/Xibo-Linux-PlayerOS-centos7/main/netcontrol.sh > /dev/null 2>&1
-cp netcontrol.sh /root/
 chmod +x /root/netcontrol.sh
 
 
