@@ -173,12 +173,6 @@ echo "Setting Time Zone"
 sudo timedatectl set-timezone $systimezone
 
 
-echo "Auto Login is configured for user: $xibouser"
-
-cd /etc/gdm/
-sed -i "4i AutomaticLogin=$xibouser" custom.conf
-sed -i "5i AutomaticLoginEnable=True" custom.conf
-
 echo "Never Sleep configured"
 systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target > /dev/null 2>&1
 
@@ -188,9 +182,15 @@ echo '@reboot root /root/lancontrol.sh' >>/etc/crontab
 systemctl enable crond
 
 echo "Configureing Network Control Script"
+rm -f netcontrol.sh
 wget https://raw.githubusercontent.com/AydinFatoglu/Xibo-Linux-PlayerOS-centos7/main/netcontrol.sh > /dev/null 2>&1
-cp netcontrol.sh /root/
 chmod +x /root/netcontrol.sh
+
+echo "Auto Login is configured for user: $xibouser"
+
+cd /etc/gdm/
+sed -i "4i AutomaticLogin=$xibouser" custom.conf
+sed -i "5i AutomaticLoginEnable=True" custom.conf
 
 runuser -l gdm -c 'export $(dbus-launch) && GSETTINGS_BACKEND=dconf gsettings set org.gnome.desktop.session idle-delay 0'
 
