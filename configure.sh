@@ -188,9 +188,15 @@ echo '@reboot root /root/lancontrol.sh' >>/etc/crontab
 systemctl enable crond
 
 echo "Configureing Network Control Script"
-wget https://raw.githubusercontent.com/AydinFatoglu/Xibo-Linux-PlayerOS-centos7/main/lancontrol.sh > /dev/null 2>&1
-cp lancontrol.sh /root/
-chmod +x /root/lancontrol.sh
+wget https://raw.githubusercontent.com/AydinFatoglu/Xibo-Linux-PlayerOS-centos7/main/netcontrol.sh > /dev/null 2>&1
+cp netcontrol.sh /root/
+chmod +x /root/netcontrol.sh
+
+su - gdm -s /bin/sh
+export $(dbus-launch)
+GSETTINGS_BACKEND=dconf gsettings set org.gnome.desktop.session idle-delay 0
+exit
+systemctl restart gdm
 
 
 echo "ALL DONE!!!! - REBOOTING NOW..."
