@@ -65,12 +65,10 @@ EOF
 
 echo ""
 echo ""
-echo "Downloading and Installing GUI [X Window System / xorg / GDM / Openbox]"
 echo "Downloading and Installing GUI [X Window System]"
 yum groupinstall "X Window System" -y > /dev/null 2>&1
 echo "Downloading and Installing GUI [xorg]"
 yum install xorg* -y > /dev/null 2>&1
-
 yum install epel-release -y > /dev/null 2>&1
 echo "Downloading and Installing OS Updates"
 yum update -y > /dev/null 2>&1
@@ -87,10 +85,8 @@ echo "Downloading and Installing GUI [Openbox]"
 yum install openbox -y > /dev/null 2>&1
 
 echo "Downloading and Installing Prerequsits"
-yum install git -y > /dev/null 2>&1
 yum install nano -y > /dev/null 2>&1
 yum install wget -y > /dev/null 2>&1
-yum install net-tools -y > /dev/null 2>&1
 yum install conky -y > /dev/null 2>&1
 yum install -y terminator > /dev/null 2>&1
 
@@ -223,37 +219,32 @@ echo "Setting Time Zone"
 sudo timedatectl set-timezone $systimezone
 
 
-echo "Auto Login is configured for user: $xibouser"
 
-cd /etc/gdm/
-sed -i "4i AutomaticLogin=$xibouser" custom.conf
-sed -i "5i AutomaticLoginEnable=True" custom.conf
 
 echo "Never Sleep configured"
 systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target > /dev/null 2>&1
 
 echo "Schedule Reboot configured"
 echo '1 0 * * * root /sbin/shutdown -r now' >>/etc/crontab
-echo '@reboot root /root/lancontrol.sh' >>/etc/crontab
+echo '@reboot root /root/netcontrol.sh' >>/etc/crontab
 systemctl enable crond
 
 echo "Configureing Network Control Script"
 
-echo '#!/bin/bash' >> pingcontrol.sh
-echo 'while true ; do' >> pingcontrol.sh
-echo 'target="$=ping"' >> pingcontrol.sh
-echo 'sleep 90' >> pingcontrol.sh
-echo 'count=$( ping -c 1 $target | grep icmp* | wc -l )' >> pingcontrol.sh
-echo 'if [ $count -eq 0 ]' >> pingcontrol.sh
-echo 'then' >> pingcontrol.sh
-echo ' ' >> pingcontrol.sh
-echo '/sbin/shutdown -r now' >> pingcontrol.sh
-echo 'else' >> pingcontrol.sh
-echo ' ' >> pingcontrol.sh
-echo 'fi' >> pingcontrol.sh
-echo 'done' >> pingcontrol.sh
+wget https://raw.githubusercontent.com/AydinFatoglu/Xibo-Linux-PlayerOS-centos7/main/netcontrol.sh > /dev/null 2>&1
+chmod +x /root/netcontrol.sh
 
-chmod +x /root/pingcontrol.sh
+echo "Auto Login is configured for user: $xibouser"
+
+cd /etc/gdm/
+sed -i "4i AutomaticLogin=$xibouser" custom.conf
+sed -i "5i AutomaticLoginEnable=True" custom.conf
+
+su - gdm -s /bin/sh
+export $(dbus-launch)
+GSETTINGS_BACKEND=dconf gsettings set org.gnome.desktop.session idle-delay 0
+exit
+systemctl restart gdm
 
 
 echo "ALL DONE!!!! - REBOOTING NOW..."
