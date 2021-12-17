@@ -40,7 +40,7 @@ EOF
 
 echo ""
 echo ""
-echo "Downloading and Installing GUI [X Window System / xorg / GDM / Openbox]"
+
 echo "Downloading and Installing GUI [X Window System]"
 yum groupinstall "X Window System" -y > /dev/null 2>&1
 echo "Downloading and Installing GUI [xorg]"
@@ -49,6 +49,10 @@ yum install xorg* -y > /dev/null 2>&1
 yum install epel-release -y > /dev/null 2>&1
 echo "Downloading and Installing OS Updates"
 yum update -y > /dev/null 2>&1
+echo "Downloading and Installing GUI [GDM]"
+yum install gdm -y > /dev/null 2>&1
+echo "Downloading and Installing GUI [Openbox]"
+yum install openbox -y > /dev/null 2>&1
 echo "Downloading and Installing Cockpit"
 yum install cockpit  -y > /dev/null 2>&1
 systemctl start cockpit > /dev/null 2>&1
@@ -56,16 +60,11 @@ systemctl enable cockpit.socket > /dev/null 2>&1
 firewall-cmd --add-service=cockpit > /dev/null 2>&1
 firewall-cmd --add-service=cockpit --permanent > /dev/null 2>&1
 firewall-cmd --reload > /dev/null 2>&1
-echo "Downloading and Installing GUI [GDM]"
-yum install gdm -y > /dev/null 2>&1
-echo "Downloading and Installing GUI [Openbox]"
-yum install openbox -y > /dev/null 2>&1
+
 
 echo "Downloading and Installing Prerequsits"
-yum install git -y > /dev/null 2>&1
 yum install nano -y > /dev/null 2>&1
 yum install wget -y > /dev/null 2>&1
-yum install net-tools -y > /dev/null 2>&1
 yum install conky -y > /dev/null 2>&1
 yum install -y terminator > /dev/null 2>&1
 
