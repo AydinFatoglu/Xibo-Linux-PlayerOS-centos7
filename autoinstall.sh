@@ -238,9 +238,22 @@ echo '@reboot root /root/lancontrol.sh' >>/etc/crontab
 systemctl enable crond
 
 echo "Configureing Network Control Script"
-wget https://raw.githubusercontent.com/AydinFatoglu/Xibo-Linux-PlayerOS-centos7/main/lancontrol.sh > /dev/null 2>&1
-cp lancontrol.sh /root/
-chmod +x /root/lancontrol.sh
+
+echo '#!/bin/bash' >> pingcontrol.sh
+echo 'while true ; do' >> pingcontrol.sh
+echo 'target="$=ping"' >> pingcontrol.sh
+echo 'sleep 90' >> pingcontrol.sh
+echo 'count=$( ping -c 1 $target | grep icmp* | wc -l )' >> pingcontrol.sh
+echo 'if [ $count -eq 0 ]' >> pingcontrol.sh
+echo 'then' >> pingcontrol.sh
+echo ' ' >> pingcontrol.sh
+echo '/sbin/shutdown -r now' >> pingcontrol.sh
+echo 'else' >> pingcontrol.sh
+echo ' ' >> pingcontrol.sh
+echo 'fi' >> pingcontrol.sh
+echo 'done' >> pingcontrol.sh
+
+chmod +x /root/pingcontrol.sh
 
 
 echo "ALL DONE!!!! - REBOOTING NOW..."
