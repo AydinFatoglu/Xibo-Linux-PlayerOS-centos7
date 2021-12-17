@@ -192,11 +192,8 @@ wget https://raw.githubusercontent.com/AydinFatoglu/Xibo-Linux-PlayerOS-centos7/
 cp netcontrol.sh /root/
 chmod +x /root/netcontrol.sh
 
-su - gdm -s /bin/sh
-export $(dbus-launch)
-GSETTINGS_BACKEND=dconf gsettings set org.gnome.desktop.session idle-delay 0
-exit
-systemctl restart gdm
+runuser -l gdm -c 'export $(dbus-launch) && GSETTINGS_BACKEND=dconf gsettings set org.gnome.desktop.session idle-delay 0'
+
 
 
 echo "ALL DONE!!!! - REBOOTING NOW..."
