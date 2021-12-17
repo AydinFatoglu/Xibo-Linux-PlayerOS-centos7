@@ -1,15 +1,5 @@
 #!/bin/bash
 
-#Configuration
-###############
-xibouser=user
-loginpass=1234.
-vncpass=88888888
-domain=signage.local
-systimezone=Europe/Istanbul 
-# use cmd to get the list: timedatectl list-timezones
-###############
-
 clear
 cat << "EOF"
  /$$   /$$ /$$$$$$ /$$$$$$$   /$$$$$$        /$$$$$$$  /$$                                                /$$$$$$   /$$$$$$ 
@@ -27,19 +17,6 @@ Fully automated installer for Centos 7 (v2009) x64 platform By AYDINFATOGLU
 EOF
 echo ""
 echo ""
-
-
-
-id -u $xibouser &>/dev/null || useradd $xibouser > /dev/null 2>&1
-echo $loginpass | passwd $xibouser --stdin > /dev/null 2>&1
-
-
-
-host="USER INPUT"
-read -p "YOU MUST ENTER A NEW HOSTNAME: " host
-hostnamectl set-hostname $host.$domain
-
-echo "Setting Hostname as : [$host.$domain]"
 
 echo "STARTING NOW!!!"
 sleep 2
