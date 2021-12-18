@@ -88,7 +88,7 @@ yum install -y tigervnc-server > /dev/null 2>&1
 
 
 
-echo "Downloading Default Conky Config "
+echo "Downloading Custom Conky Config "
 
 rm -f /etc/conky/conky.conf
 wget -P /etc/conky/ https://raw.githubusercontent.com/AydinFatoglu/Xibo-Linux-PlayerOS-centos7/main/conky.conf > /dev/null 2>&1
@@ -96,8 +96,8 @@ chmod +x /etc/conky/conky.conf
 
 
 
-echo "Configureing Network Control Script"
-rm -f /etc/conky/netcontrol.sh
+echo "Downloading Network Control Script"
+rm -f netcontrol.sh
 wget https://raw.githubusercontent.com/AydinFatoglu/Xibo-Linux-PlayerOS-centos7/main/netcontrol.sh > /dev/null 2>&1
 chmod +x /root/netcontrol.sh
 
