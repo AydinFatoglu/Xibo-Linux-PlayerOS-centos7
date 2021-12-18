@@ -101,6 +101,10 @@ rm -f netcontrol.sh
 wget https://raw.githubusercontent.com/AydinFatoglu/Xibo-Linux-PlayerOS-centos7/main/netcontrol.sh > /dev/null 2>&1
 chmod +x /root/netcontrol.sh
 
+echo "Downloading and Installing  NTP (Network Time Protocol) Service"
+yum install ntp -y
+systemctl start ntpd.service
+systemctl enable ntpd.service 
 
 echo "ALL DONE!!!! - REBOOTING NOW..."
 sleep 5
