@@ -163,8 +163,8 @@ systemctl enable conky.service > /dev/null 2>&1
 
 echo "Overwriteing Default Conky Config "
 
-rm -f /etc/conky/conky.conf
-wget -P /etc/conky/ https://raw.githubusercontent.com/AydinFatoglu/Xibo-Linux-PlayerOS-centos7/main/conky.conf > /dev/null 2>&1
+
+
 chmod +x /etc/conky/conky.conf
 
 echo "GUI enabled"
@@ -178,12 +178,11 @@ systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target 
 
 echo "Schedule Reboot configured"
 echo '1 0 * * * root /sbin/shutdown -r now' >>/etc/crontab
-echo '@reboot root /root/lancontrol.sh' >>/etc/crontab
+echo '@reboot root /root/netcontrol.sh' >>/etc/crontab
 systemctl enable crond
 
 echo "Configureing Network Control Script"
-rm -f netcontrol.sh
-wget https://raw.githubusercontent.com/AydinFatoglu/Xibo-Linux-PlayerOS-centos7/main/netcontrol.sh > /dev/null 2>&1
+
 chmod +x /root/netcontrol.sh
 
 echo "Auto Login is configured for user: $xibouser"
@@ -192,7 +191,7 @@ cd /etc/gdm/
 sed -i "4i AutomaticLogin=$xibouser" custom.conf
 sed -i "5i AutomaticLoginEnable=True" custom.conf
 
-runuser -l gdm -c 'export $(dbus-launch) && GSETTINGS_BACKEND=dconf gsettings set org.gnome.desktop.session idle-delay 0'
+
 
 
 
