@@ -7,7 +7,6 @@ loginpass=1234.
 vncpass=88888888
 domain=signage.local
 systimezone=Europe/Istanbul 
-ntpserver="server 0.tr.pool.ntp.org"
 # use cmd to get the list: timedatectl list-timezones
 ###############
 
@@ -170,8 +169,7 @@ chmod +x /etc/conky/conky.conf
 
 echo "GUI enabled"
 systemctl set-default graphical.target > /dev/null 2>&1
-echo "Setting NTP Server"
-sudo ntpdate $ntpserver
+
 #echo "Setting Time Zone"
 #sudo timedatectl set-timezone $systimezone
 
@@ -181,12 +179,12 @@ systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target 
 
 echo "Schedule Reboot configured"
 echo '1 0 * * * root /sbin/shutdown -r now' >>/etc/crontab
-echo '@reboot root /root/netcontrol.sh' >>/etc/crontab
+echo '@reboot root /etc/netcontrol.sh' >>/etc/crontab
 systemctl enable crond
 
 echo "Configureing Network Control Script"
 
-chmod +x /root/netcontrol.sh
+chmod +x /etc/netcontrol.sh
 
 echo "Auto Login is configured for user: $xibouser"
 
