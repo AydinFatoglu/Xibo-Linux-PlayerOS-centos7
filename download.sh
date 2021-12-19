@@ -98,13 +98,10 @@ chmod +x /etc/conky/conky.conf
 
 echo "Downloading Network Control Script"
 rm -f netcontrol.sh
-wget https://raw.githubusercontent.com/AydinFatoglu/Xibo-Linux-PlayerOS-centos7/main/netcontrol.sh > /dev/null 2>&1
+wget -P /etc/ wget https://raw.githubusercontent.com/AydinFatoglu/Xibo-Linux-PlayerOS-centos7/main/netcontrol.sh > /dev/null 2>&1
 
 
-echo "Downloading and Installing  NTP (Network Time Protocol) Service"
-yum install ntp -y
-systemctl start ntpd.service
-systemctl enable ntpd.service 
+
 
 echo "ALL DONE!!!! - REBOOTING NOW..."
 sleep 5
