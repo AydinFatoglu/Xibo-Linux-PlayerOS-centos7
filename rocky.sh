@@ -87,7 +87,8 @@ firewall-cmd --zone=public --permanent --add-service=vnc-server
 firewall-cmd --reload
 
 sudo yum install terminator -y
-sudo yum install nano -y
+sudo yum install nano -y,
+sudo dnf -y install gedit-plugin-terminal -y
 
 cd /etc/gdm/
 sed -i "4i AutomaticLogin=$xibouser" custom.conf
@@ -95,3 +96,8 @@ sed -i "5i AutomaticLoginEnable=True" custom.conf
 
 
 sudo timedatectl set-timezone $systimezone
+
+
+sudo systemctl stop bluetooth.service
+sudo systemctl disable bluetooth.service
+
