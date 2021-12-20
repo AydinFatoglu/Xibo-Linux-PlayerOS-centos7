@@ -78,9 +78,9 @@ sudo ln -s /var/lib/snapd/snap /snap > /dev/null 2>&1
 
 echo "Downloading and Installing Xibo Player From Snap"
 
-sudo snap install xibo-player > /dev/null 2>&1
+sudo snap install xibo-player
 sleep 3
-sudo snap install xibo-player > /dev/null 2>&1
+sudo snap install xibo-player
 
 echo "Downloading and Installing TightVNC Server"
 yum install -y tigervnc-server > /dev/null 2>&1
