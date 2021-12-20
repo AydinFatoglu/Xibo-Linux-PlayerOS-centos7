@@ -161,7 +161,7 @@ EOT
 chmod +x /etc/systemd/system/conky.service
 systemctl enable conky.service > /dev/null 2>&1
 
-echo "Overwriteing Default Conky Config "
+echo "Configureing Default Conky Config "
 
 
 
