@@ -68,7 +68,6 @@ echo "Downloading and Installing Prerequsits"
 yum install nano -y > /dev/null 2>&1
 yum install wget -y > /dev/null 2>&1
 yum install conky -y > /dev/null 2>&1
-yum install -y terminator > /dev/null 2>&1
 
 echo "Downloading and Installing Snap For Centos 7"
 
