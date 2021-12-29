@@ -5,7 +5,6 @@
 xibouser=user
 loginpass=1234.
 vncpass=88888888
-domain=signage.local
 systimezone=Europe/Istanbul 
 # use cmd to get the list: timedatectl list-timezones
 ###############
@@ -37,7 +36,7 @@ echo $loginpass | passwd $xibouser --stdin > /dev/null 2>&1
 
 host="USER INPUT"
 read -p "YOU MUST ENTER A NEW HOSTNAME: " host
-hostnamectl set-hostname $host.$domain
+hostnamectl set-hostname $host
 
 echo "Setting Hostname as : [$host.$domain]"
 
