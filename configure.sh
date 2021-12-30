@@ -169,8 +169,8 @@ chmod +x /etc/conky/conky.conf
 echo "GUI enabled"
 systemctl set-default graphical.target > /dev/null 2>&1
 
-#echo "Setting Time Zone"
-#sudo timedatectl set-timezone $systimezone
+echo "Setting Time Zone"
+sudo timedatectl set-timezone $systimezone
 
 
 echo "Never Sleep configured"
@@ -182,10 +182,6 @@ echo '@reboot root /etc/netcontrol.sh' >>/etc/crontab
 
 systemctl enable crond
 
-echo "resolv.conf file Configured"
-echo 'search teknik.thynet.thy.com' >>/etc/resolv.conf
-echo '10.9.103.111' >>/etc/resolv.conf
-echo '10.9.103.112' >>/etc/resolv.conf
 
 
 echo "Configureing Network Control Script"
