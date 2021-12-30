@@ -38,7 +38,7 @@ host="USER INPUT"
 read -p "YOU MUST ENTER A NEW HOSTNAME: " host
 hostnamectl set-hostname $host
 
-echo "Setting Hostname as : [$host.$domain]"
+echo "Setting Hostname as : [$host]"
 
 echo "STARTING NOW!!!"
 sleep 2
