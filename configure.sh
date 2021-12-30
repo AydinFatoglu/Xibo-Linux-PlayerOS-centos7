@@ -179,9 +179,14 @@ systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target 
 echo "Schedule Reboot configured"
 echo '1 0 * * * root /sbin/shutdown -r now' >>/etc/crontab
 echo '@reboot root /etc/netcontrol.sh' >>/etc/crontab
-echo '0,30 * * * * root systemctl restart xibo.service' >>/etc/crontab
 
 systemctl enable crond
+
+echo "resolv.conf file Configured"
+echo 'search teknik.thynet.thy.com' >>/etc/resolv.conf
+echo '10.9.103.111' >>/etc/resolv.conf
+echo '10.9.103.112' >>/etc/resolv.conf
+
 
 echo "Configureing Network Control Script"
 
