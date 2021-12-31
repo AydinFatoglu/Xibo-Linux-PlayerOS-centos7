@@ -5,6 +5,7 @@ It focuses on low ram and cpu usage so only needed components will be installed 
 
 - It will install latest stable version of Xibo Linux Player from Snap.
 - It will install latest stable version of Conky to display system info on desktop.
+- It will install latest stable version of Cokpit Sytem Monitor Web Interface.
 - It will auto logon to pre-definned user by you.
 - It will auto start Xibo Linux Player on logon.
 - It will auto start Vnc remote accsess when system boots.
