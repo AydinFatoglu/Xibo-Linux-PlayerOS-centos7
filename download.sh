@@ -77,6 +77,10 @@ sudo ln -s /var/lib/snapd/snap /snap > /dev/null 2>&1
 
 echo "Downloading and Installing Xibo Player From Snap"
 
+setenforce 0
+sed -i --follow-symlinks 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/sysconfig/selinux
+sed '7s/^#//' -i /etc/gdm/custom.conf
+
 sudo snap install xibo-player
 sleep 3
 sudo snap install xibo-player
