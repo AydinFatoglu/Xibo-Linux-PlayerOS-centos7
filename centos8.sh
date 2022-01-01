@@ -36,6 +36,8 @@ echo $loginpass | passwd $xibouser --stdin
 
 
 
+
+
 host="USER INPUT"
 read -p "YOU MUST ENTER A NEW HOSTNAME: " host
 hostnamectl set-hostname $host.$domain
@@ -68,6 +70,24 @@ echo ""
 echo "Downloading and Installing GUI [GNOME Clasic Session / GDM]"
 yum install gnome-classic-session -y 
 
+cat <<EOT >> /var/lib/AccountsService/users/$xibouser
+# This file contains defaults for new users. To edit, first
+# copy it to /etc/accountsservice/user-templates and make changes
+# there
+
+[com.redhat.AccountsServiceUser.System]
+id='almalinux'
+version-id='8.5'
+
+[User]
+Session=gnome-classic-wayland
+Icon=/home/test/.face
+SystemAccount=false
+EOT
+
+
+
+
 echo "Downloading and Installing Prerequsits"
 yum install git -y
 yum install nano -y
@@ -84,6 +104,10 @@ sudo ln -s /var/lib/snapd/snap /snap
 
 echo "Downloading and Installing Xibo Player From Snap"
 
+setenforce 0
+sed -i --follow-symlinks 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/sysconfig/selinux
+sed '7s/^#//' -i /etc/gdm/custom.conf
+
 sudo snap install xibo-player
 sleep 3
 sudo snap install xibo-player
@@ -94,9 +118,7 @@ dnf install tigervnc-server tigervnc-server-module -y
 
 echo "Configureing TightVNC Server"
 
-setenforce 0
-sed -i --follow-symlinks 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/sysconfig/selinux
-sed '7s/^#//' -i /etc/gdm/custom.conf
+
 
 
 mkdir /home/$xibouser/.vnc
