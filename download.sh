@@ -80,7 +80,7 @@ echo "Downloading and Installing Xibo Player From Snap"
 setenforce 0
 sed -i --follow-symlinks 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/sysconfig/selinux
 
-sudo snap install xibo-player
+sudo snap install xibo-player > /dev/null 2>&1
 sleep 3
 sudo snap install xibo-player
 
