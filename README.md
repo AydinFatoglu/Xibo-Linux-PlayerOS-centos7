@@ -1,17 +1,12 @@
 # Xibo-Linux-PlayerOS-centos7
 
-This is the one and only fully automated install bash script for Centos 7 x64 platform.
-It focuses on low ram and cpu usage so only needed components will be installed to run Xibo Linux Player smoothly!
+This is the only fully automated bash script for installing on the Centos 7 x64 platform. It is designed to prioritize low RAM and CPU usage, ensuring that only the necessary components are installed to run the Xibo Linux Player smoothly.
 
-- It will install latest stable version of Xibo Linux Player from Snap.
-- It will install latest stable version of Conky to display system info on desktop.
-- It will install latest stable version of Cokpit Sytem Monitor Web Interface.
-- It will auto logon to pre-definned user by you.
-- It will auto start Xibo Linux Player on logon.
-- It will auto start Vnc remote accsess when system boots.
-- It will auto start Xibo Linux Player if Crashes.
-- It will auto restart the operating system every night at 12 AM.
-- It will auto restart the operating system if netwok is disconnected.
+This script will install the latest stable version of the Xibo Linux Player from Snap, as well as the latest stable versions of Conky for displaying system information on the desktop and Cockpit System Monitor Web Interface. It will also log in automatically to a user of your choice, start the Xibo Linux Player on login, and enable VNC remote access when the system boots.
+
+In addition, the script will automatically restart the operating system every night at 12 AM and also in case the network is disconnected. It will also automatically restart the Xibo Linux Player if it crashes.
+
+
 
 # Installers
 
